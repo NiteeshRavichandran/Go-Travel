@@ -1,0 +1,147 @@
+<div class="login-container">
+  <img
+    class="roll"
+    src="https://banner2.cleanpng.com/20180419/djw/kisspng-bus-mexico-coach-etn-car-luxury-bus-5ad963c3c0dc85.50170055152419629179.jpg"
+    alt="film"
+  />
+  <div class="logo">Go Travel</div>
+  <div>
+    <form [formGroup]="signUp" (submit)="onSubmit()">
+      <div class="login-form">
+        <nav class="navbar navbar-expand navbar-light bg-light">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login" >Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/signup">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin">Admin</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- name -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Full Name"
+            formControlName="name"
+            class="form-control"
+          />
+          <span
+            *ngIf="
+              !signUp.get('name')?.valid &&
+              signUp.get('name')?.touched
+            "
+            class="help-block"
+            >Please Enter Your Full Name</span
+          >
+        </div>
+
+        <!-- username -->
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your email"
+            formControlName="username"
+            class="form-control"
+          />
+          <span
+            *ngIf="
+              !signUp.get('username')?.valid &&
+              signUp.get('username')?.touched
+            "
+            class="help-block"
+            >Please Enter a valid UserName!</span
+          >
+        </div>
+        
+        <!-- phone -->
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Phone Number Without +91"
+            formControlName="phone"
+            class="form-control"
+          />
+          <span
+            *ngIf="
+              !signUp.get('phone')?.valid &&
+              signUp.get('phone')?.touched
+            "
+            class="help-block"
+            >Please Enter a valid Phone Number</span
+          >
+        </div>
+
+        <!-- password -->
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter your Password"
+            class="form-control"
+          />
+          <span
+            *ngIf="
+              !signUp.get('password')?.valid &&
+              signUp.get('password')?.touched
+            "
+            class="help-block"
+            >Please Enter a valid Password!</span
+          >
+        </div>
+
+        <!-- confirm password -->
+        <div class="form-group">
+          <label for="password">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmpassword"
+            placeholder="Confirm Password"
+            formControlName="confirmpassword"
+            class="form-control"
+          />
+          <span
+    *ngIf="
+      signUp.get('confirmpassword')?.hasError('required') &&
+      signUp.get('confirmpassword')?.touched
+    "
+    class="help-block"
+    >Please confirm your password.</span
+  >
+  <span
+    *ngIf="
+      signUp.get('confirmpassword')?.hasError('pattern') &&
+      signUp.get('confirmpassword')?.touched
+    "
+    class="help-block"
+    >Password must contain at least one uppercase letter, one lowercase letter, one numeric digit, one special character, and be at least 8 characters long.</span
+  >
+  <span
+    *ngIf="
+      signUp.get('confirmpassword')?.hasError('passwordMismatch') &&
+      signUp.get('confirmpassword')?.touched
+    "
+    class="help-block"
+    >Passwords do not match.</span
+  >
+        </div>
+        <div class="btn-container">
+          <button class="btn btn-dark" type="submit">Signup</button>
+        </div>
+        </div>
+    </form>
+  </div>
