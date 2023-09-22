@@ -1,1 +1,70 @@
-<p>seats</p>
+
+<div class="container">
+  <h2>Bus Seat Booking</h2>
+
+  <!-- Lower Single Seats -->
+
+  <div class="seats">
+  <div class="seat-container">
+      <label *ngFor="let seat of lowerSingleSeats" 
+      class="seat" 
+      [class.booked]="seat.status === 'booked'" 
+      [class.available]="seat.status === 'available'"
+      [class.selected]="seat.status === 'selected'" 
+      [class.ladies]="seat.status === 'ladies'">
+          <input type="checkbox" [disabled]="seat.status === 'booked'" 
+          [value]="seat.name" 
+          (change)="toggleSeatStatus(seat)">
+          {{ seat.name }}
+      </label>
+  </div>
+
+  <!-- Single Upper Berth Seats -->
+  <div class="seat-container">
+      <label *ngFor="let seat of singleUpperBerthSeats"
+       class="berth" 
+       [class.booked]="seat.status === 'booked'" 
+       [class.available]="seat.status === 'available'" 
+       [class.selected]="seat.status === 'selected'"
+       [class.ladies]="seat.status === 'ladies'">
+          <input type="checkbox" 
+          [disabled]="seat.status === 'booked'" 
+          [value]="seat.name" 
+          (change)="toggleSeatStatus(seat)">
+          {{ seat.name }}
+      </label>
+  </div>
+
+  <!-- Double Lower Berth Seats -->
+  <div class="seat-container">
+      <label *ngFor="let seat of doubleLowerBerthSeats" 
+      class="berth" 
+      [class.booked]="seat.status === 'booked'" 
+      [class.available]="seat.status === 'available'" 
+      [class.selected]="seat.status === 'selected'"
+      [class.ladies]="seat.status === 'ladies'">
+          <input type="checkbox" 
+          [disabled]="seat.status === 'booked'" 
+          [value]="seat.name" 
+          (change)="toggleSeatStatus(seat)">
+          {{ seat.name }}
+      </label>
+  </div>
+
+  <!-- Double Upper Berth Seats -->
+  <div class="seat-container">
+      <label *ngFor="let seat of doubleUpperBerthSeats" 
+      class="berth" 
+      [class.booked]="seat.status === 'booked'" 
+      [class.available]="seat.status === 'available'" 
+      [class.ladies]="seat.status === 'ladies'">
+          <input type="checkbox" 
+          [disabled]="seat.status === 'booked'" 
+          [value]="seat.name" 
+          (change)="toggleSeatStatus(seat)">
+          {{ seat.name }}
+      </label>
+  </div>
+</div>
+
+</div>
