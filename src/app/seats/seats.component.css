@@ -20,7 +20,7 @@
 
 /* Add styles for individual seats */
 .seat {
-  width: 65px; /* Adjust the width as needed */
+  width: 60px; /* Adjust the width as needed */
   height: 50px; /* Adjust the height as needed */
   margin: 5px; /* Adjust the margin as needed */
   display: flex;

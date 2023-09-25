@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   constructor(private router: Router){}
   loginForm!: FormGroup;
+  loggedIn = false;
  
-  signUp!: FormGroup;
 
   user = 'login';
   ngOnInit() {
@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.loginForm);
+    if(this.loginForm.valid){
+      // this.router.navigate(['/login']);
+      this.loggedIn=true;
+    }
+
   }
 }
