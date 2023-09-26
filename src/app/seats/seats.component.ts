@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './seats.component.html',
   styleUrls: ['./seats.component.css']
 })
+
 export class SeatsComponent {
   lowerSingleSeats = this.generateSeats(12, 'available');
   singleUpperBerthSeats = this.generateSUBerth(6, 'available');
@@ -52,3 +53,7 @@ export class SeatsComponent {
   }
 
 }
+
+
+
+

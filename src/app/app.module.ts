@@ -10,6 +10,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SeatsComponent } from './seats/seats.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFireModule } from '@angular/fire/compat'
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AddBusComponent } from './add-bus/add-bus.component';
 
 
 @NgModule({
@@ -18,12 +22,14 @@ import { AngularFireModule } from '@angular/fire/compat'
     LoginComponent,
     AdminComponent,
     SignUpComponent,
-    SeatsComponent
+    SeatsComponent,
+    AddBusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyDlA0pnKkl1DEhSkMsJEgaEgWbQjyz3wWw",
       authDomain: "go-travel-8b92f.firebaseapp.com",
@@ -36,7 +42,7 @@ import { AngularFireModule } from '@angular/fire/compat'
     }),
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

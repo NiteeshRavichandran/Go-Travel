@@ -13,8 +13,8 @@ export class AdminComponent {
 
   ngOnInit(){
   this.adminLogin = new FormGroup({
-    username: new FormControl(null,[Validators.minLength(9),Validators.required]),
-    password: new FormControl(null,[Validators.pattern('(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z0-9@#$%^&+=!]).{8,}'),Validators.required])
+    username: new FormControl(null,[Validators.email,Validators.required]),
+    password: new FormControl(null,[Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[a-zA-Z0-9@#$%^&+=!]{8,}$'),Validators.required])
   });
 }
 onSubmit() {
