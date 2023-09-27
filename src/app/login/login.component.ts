@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit {
       // this.loggedIn=true;
       const email = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      this.authService.signUp(email, password).subscribe(resData => {
+
+      this.authService.signIn(email, password).subscribe(resData => {
         console.log(resData); 
+        this.router.navigate(['/admin/addBus']);
       },
       error => {
         console.log(error);

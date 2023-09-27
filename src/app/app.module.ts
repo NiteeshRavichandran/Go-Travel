@@ -14,6 +14,8 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddBusComponent } from './add-bus/add-bus.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { AddBusComponent } from './add-bus/add-bus.component';
     AdminComponent,
     SignUpComponent,
     SeatsComponent,
-    AddBusComponent
+    AddBusComponent,
+    AdminLoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

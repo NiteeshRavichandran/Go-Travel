@@ -1,0 +1,67 @@
+<div class="login-container">
+  <img
+    class="roll"
+    src="../assets/bus-white.jpg"    alt="bus"
+  />
+  <div class="logo">Go Travel</div>
+<div>
+  <form [formGroup]="adminLogin" (submit)="onSubmit()">
+    <div class="login-form">
+      <nav class="navbar navbar-expand navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" >Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signup" >Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/adminLogin">Admin</a>
+          </li> 
+        </ul>
+      </nav>
+      <div class="form-group">
+        <label for="username">Admin Name</label>
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter your email"
+          formControlName="username"
+          class="form-control"
+        />
+        <span
+          *ngIf="
+            !adminLogin.get('username')?.valid &&
+            adminLogin.get('username')?.touched
+          "
+          class="help-block"
+          >Please Enter a valid UserName!</span
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your Password"
+          class="form-control"
+        />
+        <span
+          *ngIf="
+            !adminLogin.get('password')?.valid &&
+            adminLogin.get('password')?.touched
+          "
+          class="help-block"
+          >Please Enter a valid Password!</span
+        >
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-dark" type="submit">Login</button>
+        <!-- <span 
+     *ngIf="!loginForm?.valid && loginForm?.touched"
+     class="help-block">Please Enter valid Credentials!</span> -->
+      </div>
+    </div>
+  </form>
+</div>
