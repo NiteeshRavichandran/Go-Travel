@@ -1,12 +1,73 @@
 import { Component } from '@angular/core';
+import { SeatService } from '../seat.service';
 
 @Component({
   selector: 'app-seats',
   templateUrl: './seats.component.html',
   styleUrls: ['./seats.component.css']
 })
-
+  
 export class SeatsComponent {
+
+  constructor(private seatService: SeatService) {} // Inject the service
+
+  lowerSingleSeats: any[] = []; // Initialize with an empty array or default value
+  singleUpperBerthSeats: any[] = []; // Initialize with an empty array or default value
+  doubleLowerBerthSeats: any[] = []; // Initialize with an empty array or default value
+  doubleUpperBerthSeats: any[] = []; // Initialize with an empty array or default value
+
+  
+  
+  ngOnInit(): void {
+    const seatData = this.seatService.getSeatData(); // Get the seat data from the service
+    console.log(seatData);
+
+    for (const seatName in seatData) {
+      if (seatData.hasOwnProperty(seatName)) {
+        const seat = seatData[seatName];
+  
+        if (seatName.startsWith('LS')) {
+          this.lowerSingleSeats.push({ name: seatName, ...seat });
+        } else if (seatName.startsWith('SUB')) {
+          this.singleUpperBerthSeats.push({ name: seatName, ...seat });
+        } else if (seatName.startsWith('DLB')) {
+          this.doubleLowerBerthSeats.push({ name: seatName, ...seat });
+        } else if (seatName.startsWith('DUB')) {
+          this.doubleUpperBerthSeats.push({ name: seatName, ...seat });
+        }
+      }
+    }
+    // Sort the arrays by seat name
+this.lowerSingleSeats.sort((a, b) => a.name.localeCompare(b.name));
+this.singleUpperBerthSeats.sort((a, b) => a.name.localeCompare(b.name));
+this.doubleLowerBerthSeats.sort((a, b) => a.name.localeCompare(b.name));
+this.doubleUpperBerthSeats.sort((a, b) => a.name.localeCompare(b.name));
+
+
+    setTimeout(() => {
+      
+    }, 800);
+
+    console.log(this.lowerSingleSeats); // Array of lower single seats
+console.log(this.singleUpperBerthSeats); // Array of single upper berth seats
+console.log(this.doubleLowerBerthSeats); // Array of double lower berth seats
+console.log(this.doubleUpperBerthSeats);
+
+  }
+    // const seatData = ti
+    
+   
+  
+
+  toggleSeatStatus(seat: any) {
+    if (seat.status === 'available' || seat.status === 'selected') {
+      seat.status = 'selected';
+    } else if (seat.status !== 'booked') {
+      seat.status = 'selected';
+    }
+  }
+}
+  /*
   lowerSingleSeats = this.generateSeats(12, 'available');
   singleUpperBerthSeats = this.generateSUBerth(6, 'available');
   doubleLowerBerthSeats = this.generateDUBerth(6, 'available');
@@ -57,3 +118,4 @@ export class SeatsComponent {
 
 
 
+*/

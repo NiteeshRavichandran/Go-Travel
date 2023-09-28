@@ -17,7 +17,16 @@ import { AddBusComponent } from './add-bus/add-bus.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { UserComponent } from './user/user.component';
 
-
+const firebaseConfig = {
+  apiKey: "AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego",
+  authDomain: "go-travel-42246.firebaseapp.com",
+  databaseURL: "https://go-travel-42246-default-rtdb.firebaseio.com",
+  projectId: "go-travel-42246",
+  storageBucket: "go-travel-42246.appspot.com",
+  messagingSenderId: "488003466377",
+  appId: "1:488003466377:web:705b85b92442c068c58258",
+  measurementId: "G-CEE4KNB9EP"
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,19 +43,12 @@ import { UserComponent } from './user/user.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDlA0pnKkl1DEhSkMsJEgaEgWbQjyz3wWw",
-      authDomain: "go-travel-8b92f.firebaseapp.com",
-      databaseURL: "https://go-travel-8b92f-default-rtdb.firebaseio.com",
-      projectId: "go-travel-8b92f",
-      storageBucket: "go-travel-8b92f.appspot.com",
-      messagingSenderId: "950595159114",
-      appId: "1:950595159114:web:a5b7f303d7d166947912b3",
-      measurementId: "G-QLNTDZL5RN"
-    }),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule
   ],
   providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

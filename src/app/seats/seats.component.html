@@ -57,6 +57,7 @@
       class="berth" 
       [class.booked]="seat.status === 'booked'" 
       [class.available]="seat.status === 'available'" 
+      [class.selected]="seat.status === 'selected'"
       [class.ladies]="seat.status === 'ladies'">
           <input type="checkbox" 
           [disabled]="seat.status === 'booked'" 

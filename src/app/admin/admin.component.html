@@ -13,3 +13,27 @@
 </nav>
 
 <router-outlet></router-outlet>
+<div class="row">
+  <div class="col-xs-12 col-md-8"></div>
+<div class="viewContainer">
+
+  <div *ngFor="let bus of buses; let busId = index" class="bus-card">
+  <h2>{{ bus.busName }}</h2>
+  <p>Bus Number: {{ bus.busNo }}</p>
+  <p>From: {{ bus.fromPlace }}</p>
+  <p>To: {{ bus.toPlace }}</p>
+  <p>Boarding Time: {{ bus.boardingTime }}</p>
+  <p>Reaching Time: {{ bus.reachingTime }}</p>
+  <button class="btn-primary" (click)="viewSeats(bus.busId)">View Seats</button>
+  <!-- <div class="seat-details">
+    <h3>Seat Details</h3>
+    <div *ngFor="let seat of getSeatKeys(bus)" class="seat">
+      <p>Seat Number: {{ seat }}</p>
+      <p>Seat Price: {{ bus.seats[seat].seatPrice }}</p>
+      <p>Seat Status: {{ bus.seats[seat].seatStatus }}</p>
+    </div>
+  </div> -->
+</div>
+
+</div>
+</div>
