@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private authService: AuthService){}
   adminLogin!: FormGroup; 
 
   ngOnInit(){
@@ -19,7 +20,20 @@ export class AdminLoginComponent {
   });
 }
 onSubmit() {
-  console.log(this.adminLogin);
+  if(this.adminLogin.valid){
+
+    const email = this.adminLogin.value.username;
+    const password = this.adminLogin.value.password;
+
+    this.authService.signIn(email, password).subscribe(resData => {
+      console.log(resData); 
+      this.router.navigate(['/admin']);
+    },
+    error => {
+      console.log(error);
+    }
+    );
+  }
 }
 
 }

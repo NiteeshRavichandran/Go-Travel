@@ -37,36 +37,55 @@ export class SeatsComponent {
         }
       }
     }
-    // Sort the arrays by seat name
-this.lowerSingleSeats.sort((a, b) => a.name.localeCompare(b.name));
-this.singleUpperBerthSeats.sort((a, b) => a.name.localeCompare(b.name));
-this.doubleLowerBerthSeats.sort((a, b) => a.name.localeCompare(b.name));
-this.doubleUpperBerthSeats.sort((a, b) => a.name.localeCompare(b.name));
 
+    // Sort the arrays by seat name numerically
+this.lowerSingleSeats.sort((a, b) => {
+  const aNumber = parseInt(a.name.match(/\d+/)[0], 10);
+  const bNumber = parseInt(b.name.match(/\d+/)[0], 10);
+  return aNumber - bNumber;
+});
+
+this.singleUpperBerthSeats.sort((a, b) => {
+  const aNumber = parseInt(a.name.match(/\d+/)[0], 10);
+  const bNumber = parseInt(b.name.match(/\d+/)[0], 10);
+  return aNumber - bNumber;
+});
+
+this.doubleLowerBerthSeats.sort((a, b) => {
+  const aNumber = parseInt(a.name.match(/\d+/)[0], 10);
+  const bNumber = parseInt(b.name.match(/\d+/)[0], 10);
+  return aNumber - bNumber;
+});
+
+this.doubleUpperBerthSeats.sort((a, b) => {
+  const aNumber = parseInt(a.name.match(/\d+/)[0], 10);
+  const bNumber = parseInt(b.name.match(/\d+/)[0], 10);
+  return aNumber - bNumber;
+});
 
     setTimeout(() => {
-      
-    }, 800);
+
+    }, 800);  
 
     console.log(this.lowerSingleSeats); // Array of lower single seats
-console.log(this.singleUpperBerthSeats); // Array of single upper berth seats
-console.log(this.doubleLowerBerthSeats); // Array of double lower berth seats
-console.log(this.doubleUpperBerthSeats);
+    console.log(this.singleUpperBerthSeats); // Array of single upper berth seats
+    console.log(this.doubleLowerBerthSeats); // Array of double lower berth seats
+    console.log(this.doubleUpperBerthSeats);
 
   }
     // const seatData = ti
     
-   
-  
-
   toggleSeatStatus(seat: any) {
-    if (seat.status === 'available' || seat.status === 'selected') {
-      seat.status = 'selected';
-    } else if (seat.status !== 'booked') {
-      seat.status = 'selected';
+    if (seat.seatStatus === 'available' || seat.seatStatus === 'selected') {
+      seat.seatStatus = 'selected';
+    } else if (seat.seatStatus !== 'booked') {
+      seat.seatStatus = 'selected';
     }
   }
 }
+
+
+
   /*
   lowerSingleSeats = this.generateSeats(12, 'available');
   singleUpperBerthSeats = this.generateSUBerth(6, 'available');

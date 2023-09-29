@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SeatService } from '../seat.service';
 
@@ -12,13 +11,13 @@ import { SeatService } from '../seat.service';
 export class AdminComponent implements OnInit {
   buses: any []= [];
   selectedBusId: string = '';
+  viewseats= false;
 
   constructor(private http: HttpClient,private seatService: SeatService, private router: Router) { }
    ngOnInit(): void {
      this.http.get('https://go-travel-42246-default-rtdb.firebaseio.com/busses.json').subscribe((posts: any) => {
       console.log(posts);
       this.buses = Object.values(posts);
-      // this.seatService.setSeatData();
      });
    }
 
@@ -27,14 +26,11 @@ export class AdminComponent implements OnInit {
   }
  
   viewSeats(busid: string){
-    this.seatService.setSeatData(busid);
-    
+    this.seatService.setSeatData(busid);   
     setTimeout(() => {
-      this.router.navigate(['/seats']);
+      // this.router.navigate(['/seats']);
+      this.viewseats=true;
     }, 800);
-    // this.router.navigate(['/seats']);
-    // console.log(busid)
-
   }
 
 }

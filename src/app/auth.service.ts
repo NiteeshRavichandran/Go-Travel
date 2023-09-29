@@ -28,4 +28,18 @@ export class AuthService {
     );
   }
 
+  signUp(email: string, password: string){
+    return this.http.post <AuthResponseData>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego',
+      {
+        email: email, 
+        password: password,
+        returnSecureToken: true
+      }
+    );
+  }
+
+  
+  
+
 }
