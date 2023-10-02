@@ -9,14 +9,16 @@ export class BookingService {
 
   constructor() { }
 
-  private selectedSeatsSubject = new Subject<Seat[]>();
+  private selectedSeatsData: Seat[] = [];
 
-  getSelectedSeatsObservable() {
-    return this.selectedSeatsSubject.asObservable();
+  getSelectedSeatsData() {
+    return this.selectedSeatsData;
   }
 
   bookSeats(selectedSeats: Seat[]) {
     // Here, you can implement the logic to book the seats and store passenger information.
     // You can also send the data to a server or save it in local storage, depending on your requirements.
+    this.selectedSeatsData = selectedSeats;
+    console.log(this.selectedSeatsData);
   }
 }

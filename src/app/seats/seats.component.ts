@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SeatService } from '../seat.service';
 import { BookingService } from '../booking.service';
+import { Router } from '@angular/router';
 
 export interface Seat {
   name: string;
@@ -21,7 +22,7 @@ export interface Seat {
   
 export class SeatsComponent {
 
-  constructor(private seatService: SeatService, private bookingService: BookingService) {} 
+  constructor(private seatService: SeatService, private bookingService: BookingService, private router: Router) {} 
 
   lowerSingleSeats: any[] = []; 
   singleUpperBerthSeats: any[] = []; 
@@ -120,6 +121,8 @@ this.doubleUpperBerthSeats.sort((a, b) => {
         return;
       }
       this.bookingService.bookSeats(this.selectedSeats);
+      this.router.navigate(['/book']);
+      console.log(this.selectedSeats);
     }
     
   }

@@ -6,37 +6,45 @@ import { Seat } from '../seats/seats.component';
 @Component({
   selector: 'app-book-tickets',
   templateUrl: './book-tickets.component.html',
-  styleUrls: ['./book-tickets.component.css']
+  styleUrls: ['./book-tickets.component.css'],
 })
-
 export class BookTicketsComponent implements OnInit {
   selectedSeats: Seat[] = [];
-  bookingForm: FormGroup;
+  bookingForms: FormGroup[] = [];
 
   constructor(private bookingService: BookingService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // Subscribe to the selected seats observable
-    this.bookingService.getSelectedSeatsObservable().subscribe((seats) => {
-      this.selectedSeats = seats;
-      this.initializeForm();
-    });
+    // Get the selected seats data directly from the service
+    this.selectedSeats = this.bookingService.getSelectedSeatsData();
+    this.initializeForms();
   }
 
-  initializeForm() {
-    this.bookingForm = this.fb.group({
-      passengerName: ['', Validators.required],
-      passengerAge: [0, [Validators.required, Validators.min(1)]],
-      passengerGender: ['', Validators.required],
+  initializeForms() {
+    // Clear existing forms
+    this.bookingForms = [];
+
+    // Create a form for each selected seat
+    this.selectedSeats.forEach((seat) => {
+      const form = this.fb.group({
+        passengerName: [seat.passengerName || '', Validators.required],
+        passengerAge: [seat.passengerAge || 0, [Validators.required, Validators.min(1)]],
+        passengerGender: [seat.passengerGender || '', Validators.required],
+      });
+      this.bookingForms.push(form);
     });
   }
 
   onSubmit() {
     // Handle form submission here, e.g., send passenger data to the server
-    if (this.bookingForm.valid) {
-      const passengerData = this.bookingForm.value;
-      // Implement logic to send passengerData and selectedSeats to the server
-      // or perform any other required actions.
+    if (this.bookingForms.every((form) => form.valid)) {
+      const passengerDataArray = this.bookingForms.map((form, index) => ({
+        seatName: this.selectedSeats[index].name,
+        passengerData: form.value,
+      }));
+
+      // Send passengerDataArray to the server or perform any other required actions
+      console.log(this.bookingForms);
     }
   }
 }
