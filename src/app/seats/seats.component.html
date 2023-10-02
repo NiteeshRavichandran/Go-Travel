@@ -9,7 +9,7 @@
       <label *ngFor="let seat of lowerSingleSeats" 
       class="seat" 
       [class.booked]="seat.seatStatus === 'booked'" 
-      [class.available]="seat.seatStatus === 'available'"
+      [class.available]="seat.seatStatus === 'Available'"
       [class.selected]="seat.seatStatus === 'selected'" 
       [class.ladies]="seat.seatStatus === 'ladies'">
           <input type="checkbox" [disabled]="seat.seatStatus === 'booked'" 
@@ -24,7 +24,7 @@
       <label *ngFor="let seat of singleUpperBerthSeats"
        class="berth" 
        [class.booked]="seat.seatStatus === 'booked'" 
-       [class.available]="seat.seatStatus === 'available'" 
+       [class.available]="seat.seatStatus === 'Available'" 
        [class.selected]="seat.seatStatus === 'selected'"
        [class.ladies]="seat.seatStatus === 'ladies'">
           <input type="checkbox" 
@@ -40,7 +40,7 @@
       <label *ngFor="let seat of doubleLowerBerthSeats" 
       class="berth" 
       [class.booked]="seat.seatStatus === 'booked'" 
-      [class.available]="seat.seatStatus === 'available'" 
+      [class.available]="seat.seatStatus === 'Available'" 
       [class.selected]="seat.seatStatus === 'selected'"
       [class.ladies]="seat.seatStatus === 'ladies'">
           <input type="checkbox" 
@@ -56,7 +56,7 @@
       <label *ngFor="let seat of doubleUpperBerthSeats" 
       class="berth" 
       [class.booked]="seat.seatStatus === 'booked'" 
-      [class.available]="seat.seatStatus === 'available'" 
+      [class.available]="seat.seatStatus === 'Available'" 
       [class.selected]="seat.seatStatus === 'selected'"
       [class.ladies]="seat.seatStatus === 'ladies'">
           <input type="checkbox" 
@@ -66,6 +66,15 @@
           {{ seat.name }}
       </label>
   </div>
+</div>
+<br>
+<br>
+<div *ngIf="selectedSeats.length > 0">
+  <h3>Selected Seats</h3>
+  <ul>
+    <li *ngFor="let seat of selectedSeats">{{ seat.name }}</li>
+  </ul>
+  <button class="btn btn-primary"(click)="bookSelectedSeats()">Book Seats</button>
 </div>
 
 </div>

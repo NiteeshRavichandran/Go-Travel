@@ -24,7 +24,7 @@
   <p>To: {{ bus.toPlace }}</p>
   <p>Boarding Time: {{ bus.boardingTime }}</p>
   <p>Reaching Time: {{ bus.reachingTime }}</p>
-  <button class="btn-primary" (click)="viewSeats(bus.busId)">View Seats</button>
+  <button class="btn btn-primary" (click)="viewSeats(bus.busId)">View Seats</button>
   <!-- <div class="seat-details">
     <h3>Seat Details</h3>
     <div *ngFor="let seat of getSeatKeys(bus)" class="seat">

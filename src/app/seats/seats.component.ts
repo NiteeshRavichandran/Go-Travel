@@ -1,25 +1,37 @@
 import { Component } from '@angular/core';
 import { SeatService } from '../seat.service';
+import { BookingService } from '../booking.service';
+
+export interface Seat {
+  name: string;
+  seatStatus: 'Available' | 'selected' | 'booked' | 'ladies';
+  passengerName?: string;
+  passengerAge?: number;
+  passengerGender?: string;
+}
+
 
 @Component({
   selector: 'app-seats',
   templateUrl: './seats.component.html',
   styleUrls: ['./seats.component.css']
 })
+
+
   
 export class SeatsComponent {
 
-  constructor(private seatService: SeatService) {} // Inject the service
+  constructor(private seatService: SeatService, private bookingService: BookingService) {} 
 
-  lowerSingleSeats: any[] = []; // Initialize with an empty array or default value
-  singleUpperBerthSeats: any[] = []; // Initialize with an empty array or default value
-  doubleLowerBerthSeats: any[] = []; // Initialize with an empty array or default value
-  doubleUpperBerthSeats: any[] = []; // Initialize with an empty array or default value
+  lowerSingleSeats: any[] = []; 
+  singleUpperBerthSeats: any[] = []; 
+  doubleLowerBerthSeats: any[] = []; 
+  doubleUpperBerthSeats: any[] = []; 
 
   
   
   ngOnInit(): void {
-    const seatData = this.seatService.getSeatData(); // Get the seat data from the service
+    const seatData = this.seatService.getSeatData(); 
     console.log(seatData);
 
     for (const seatName in seatData) {
@@ -74,17 +86,58 @@ this.doubleUpperBerthSeats.sort((a, b) => {
 
   }
     // const seatData = ti
+    selectedSeats: Seat[] = [];
+    passengerName: string = '';
+    passengerAge: number = 0;
+    passengerGender: string = '';
+  
     
-  toggleSeatStatus(seat: any) {
-    if (seat.seatStatus === 'available' || seat.seatStatus === 'selected') {
-      seat.seatStatus = 'selected';
-    } else if (seat.seatStatus !== 'booked') {
-      seat.seatStatus = 'selected';
+    toggleSeatStatus(seat: any) {
+      if (seat.seatStatus === 'Available' && this.selectedSeats.length < 5) {
+        seat.seatStatus = 'selected';
+        this.selectedSeats.push(seat);
+      } else if (seat.seatStatus !== 'selected') {
+        seat.seatStatus = 'Available';
+        const index = this.selectedSeats.findIndex((s) => s.name === seat.name);
+        if (index !== -1) {
+          this.selectedSeats.splice(index, 1);
+        }
+      } 
     }
+
+    
+    getSeatClass(seat: Seat) {
+      return {
+        'booked': seat.seatStatus === 'booked',
+        'available': seat.seatStatus === 'Available',
+        'selected': seat.seatStatus === 'selected',
+        'ladies': seat.seatStatus === 'ladies',
+      };
+    }
+
+    bookSelectedSeats() {
+      if (this.selectedSeats.length === 0) {
+        return;
+      }
+      this.bookingService.bookSeats(this.selectedSeats);
+    }
+    
   }
-}
 
-
+  
+  
+  // toggleSeatStatus(seat: Seat) {
+  //   if (seat.seatStatus === 'Available' && this.selectedSeats.length < 5 ) {
+  //     seat.seatStatus = 'selected';
+  //     this.selectedSeats.push(seat);
+  //   } else if (seat.seatStatus === 'selected') {
+  //     seat.seatStatus = 'Available';
+  //     const index = this.selectedSeats.findIndex((s) => s.name === seat.name);
+  //     if (index !== -1) {
+  //       this.selectedSeats.splice(index, 1);
+  //     }
+  //   }
+  // }
 
   /*
   lowerSingleSeats = this.generateSeats(12, 'available');

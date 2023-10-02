@@ -16,6 +16,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddBusComponent } from './add-bus/add-bus.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { UserComponent } from './user/user.component';
+import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego",
@@ -36,7 +37,8 @@ const firebaseConfig = {
     SeatsComponent,
     AddBusComponent,
     AdminLoginComponent,
-    UserComponent
+    UserComponent,
+    BookTicketsComponent
   ],
   imports: [
     BrowserModule,
