@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SeatService } from '../seat.service';
 import { BookingService } from '../booking.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { CommonModule } from '@angular/common';
 
 export interface Seat {
   name: string;
@@ -9,6 +11,7 @@ export interface Seat {
   passengerName?: string;
   passengerAge?: number;
   passengerGender?: string;
+  seatPrice?: number;
 }
 
 
@@ -22,7 +25,7 @@ export interface Seat {
   
 export class SeatsComponent {
 
-  constructor(private seatService: SeatService, private bookingService: BookingService, private router: Router) {} 
+  constructor(private seatService: SeatService, private bookingService: BookingService, private router: Router, private authService: AuthService) {} 
 
   lowerSingleSeats: any[] = []; 
   singleUpperBerthSeats: any[] = []; 
@@ -30,10 +33,12 @@ export class SeatsComponent {
   doubleUpperBerthSeats: any[] = []; 
 
   
-  
+  isAdmin:boolean;
+
   ngOnInit(): void {
     const seatData = this.seatService.getSeatData(); 
-    console.log(seatData);
+    // console.log(seatData);
+    this.isAdmin = this.authService.isAdmin();
 
     for (const seatName in seatData) {
       if (seatData.hasOwnProperty(seatName)) {
@@ -80,10 +85,10 @@ this.doubleUpperBerthSeats.sort((a, b) => {
 
     }, 800);  
 
-    console.log(this.lowerSingleSeats); // Array of lower single seats
-    console.log(this.singleUpperBerthSeats); // Array of single upper berth seats
-    console.log(this.doubleLowerBerthSeats); // Array of double lower berth seats
-    console.log(this.doubleUpperBerthSeats);
+    // console.log(this.lowerSingleSeats); // Array of lower single seats
+    // console.log(this.singleUpperBerthSeats); // Array of single upper berth seats
+    // console.log(this.doubleLowerBerthSeats); // Array of double lower berth seats
+    // console.log(this.doubleUpperBerthSeats);
 
   }
     // const seatData = ti

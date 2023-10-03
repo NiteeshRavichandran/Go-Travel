@@ -12,6 +12,7 @@
   </ul>
 </nav>
 
+<div class="login-container">
 <div class="container mt-4">
     <form *ngFor="let form of bookingForms; let i = index" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group nxt-grp">
@@ -39,7 +40,7 @@
       <button type="submit" [disabled]="!form.valid" class="btn btn-primary" *ngIf="i === bookingForms.length - 1">Submit</button>
     </form>
   </div>
-    
+    </div>
 
 
 <!--   

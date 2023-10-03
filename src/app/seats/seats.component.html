@@ -69,7 +69,7 @@
 </div>
 <br>
 <br>
-<div *ngIf="selectedSeats.length > 0">
+<div *ngIf="(selectedSeats.length > 0) && (isAdmin)">
   <h3>Selected Seats</h3>
   <ul>
     <li *ngFor="let seat of selectedSeats">{{ seat.name }}</li>

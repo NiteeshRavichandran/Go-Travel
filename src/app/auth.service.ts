@@ -17,6 +17,8 @@ interface AuthResponseData {
 export class AuthService {
   constructor(private http: HttpClient) { }
 
+  admin = false;
+
   signIn(email: string, password: string){
     return this.http.post <AuthResponseData>(
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego',
@@ -38,8 +40,14 @@ export class AuthService {
       }
     );
   }
+  
+  itsAdmin(){
+    this.admin = true;
+  }
 
-  
-  
+  isAdmin(){
+    return this.admin;
+  }
+
 
 }

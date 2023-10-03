@@ -27,6 +27,7 @@ onSubmit() {
 
     this.authService.signIn(email, password).subscribe(resData => {
       console.log(resData); 
+      this.authService.itsAdmin();
       this.router.navigate(['/admin']);
     },
     error => {
