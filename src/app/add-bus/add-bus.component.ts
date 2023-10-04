@@ -310,7 +310,7 @@ if (this.addBusForm.valid){
   // console.log(busData);
   this.http.post('https://go-travel-42246-default-rtdb.firebaseio.com/busses.json', busData).subscribe(
   responseData => {
-    console.log(responseData);
+    console.log('bus added successfully');
   }    
   );
   this.router.navigate(['/admin']);

@@ -9,18 +9,19 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserComponent } from './user/user.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { SummaryComponent } from './summary/summary.component';
+import { AuthGuardService } from './auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent},
-  { path: 'admin', component: AdminComponent, children: [
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService], children: [
     { path: 'addBus', component: AddBusComponent}
   ]},
-  { path: 'user', component: UserComponent},
+  { path: 'user', canActivate: [AuthGuardService],component: UserComponent},
   { path: 'adminLogin', component: AdminLoginComponent},
-  { path: 'book', component: BookTicketsComponent},
-  { path: 'seats', component: SeatsComponent},
-  { path: 'summary', component: SummaryComponent},
+  { path: 'book', canActivate: [AuthGuardService],component: BookTicketsComponent},
+  { path: 'seats', canActivate: [AuthGuardService],component: SeatsComponent},
+  { path: 'summary', canActivate: [AuthGuardService],component: SummaryComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/login' } 
 ];

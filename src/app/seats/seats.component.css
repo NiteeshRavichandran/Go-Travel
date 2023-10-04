@@ -54,7 +54,7 @@
 }
 
 .available {
-  background-color: #66CDAA; 
+  background-color: #ffffff; 
 }
 
 .ladies {
@@ -62,5 +62,5 @@
 }
 
 .selected {
-  background-color: #FFD700; 
+  background-color: #66CDAA; 
 }
