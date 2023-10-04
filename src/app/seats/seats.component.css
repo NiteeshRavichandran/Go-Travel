@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center; 
   column-gap: 10px;
-  background-color: #00B5E2;
+  background-color: #E0E0E0;
 }
 
 .seat-container {
@@ -28,7 +28,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
   cursor: pointer;
   
 }
@@ -41,24 +42,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
   cursor: pointer;
 
 }
 /* Add styles for seat statuses */
 .booked {
-  background-color: #ff0000; /* Red for booked seats */
+  background-color: #FF5733; /* Red for booked seats */
   cursor: not-allowed;
 }
 
 .available {
-  background-color: rgb(238, 241, 233); 
+  background-color: #66CDAA; 
 }
 
 .ladies {
-  background-color: #ff99cc; /* Pink for ladies seats */
+  background-color: #FFC0CB; /* Pink for ladies seats */
 }
 
 .selected {
-  background-color: #85E200; 
+  background-color: #FFD700; 
 }

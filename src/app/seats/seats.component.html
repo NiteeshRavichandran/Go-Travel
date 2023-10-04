@@ -69,12 +69,98 @@
 </div>
 <br>
 <br>
-<div *ngIf="(selectedSeats.length > 0) && (isAdmin)">
-  <h3>Selected Seats</h3>
+<div *ngIf="(selectedSeats.length > 0) && (!isAdmin)">
+  <h4>Selected Seats</h4>
   <ul>
     <li *ngFor="let seat of selectedSeats">{{ seat.name }}</li>
   </ul>
   <button class="btn btn-primary"(click)="bookSelectedSeats()">Book Seats</button>
 </div>
+
+
+<div *ngIf="isAdmin">
+    <div class="container">
+        <div class="row">
+          <!-- Single Upper Berth Seats - Display details of booked seats -->
+          <div class="col-md-6 mt-4">
+            <h4>Details of Booked Single Upper Berth Seats:</h4>
+            <ul class="list-group">
+              <ng-container *ngFor="let seat of singleUpperBerthSeats">
+                <li *ngIf="seat.seatStatus === 'booked'" class="list-group-item">
+                  <strong>Seat Name:</strong> {{ seat.name }}<br>
+                  <strong>Status:</strong> <span class="badge badge-primary">{{ seat.passengerDetails?.seatStatus }}</span><br>
+                  <strong>Passenger Name:</strong> {{ seat.passengerDetails?.passengerName  }}<br>
+                  <strong>Passenger Age:</strong> {{ seat.passengerDetails?.passengerAge  }}<br>
+                  <strong>Passenger Gender:</strong> {{ seat.passengerDetails?.passengerGender  }}<br>
+                  <strong>Seat Price:</strong> {{ seat.seatPrice }}<br>
+                    <button class="btn btn-primary"(click)="cancelSeat(seat.name, seat.seatPrice)">Cancel Seat</button>
+                </li>
+              </ng-container>
+            </ul>   
+          </div>
+      
+          <!-- Double Lower Berth Seats - Display details of booked seats -->
+          <div class="col-md-6 mt-4">
+            <h4>Details of Booked Double Lower Berth Seats:</h4>
+            <ul class="list-group">
+              <ng-container *ngFor="let seat of doubleLowerBerthSeats">
+                <li *ngIf="seat.seatStatus === 'booked'" class="list-group-item">
+                  <strong>Seat Name:</strong> {{ seat.name }}<br>
+                  <strong>Status:</strong> <span class="badge badge-primary">{{ seat.seatStatus }}</span><br>
+                  <strong>Passenger Name:</strong> {{ seat.passengerDetails?.passengerName || 'N/A' }}<br>
+                  <strong>Passenger Age:</strong> {{ seat.passengerDetails?.passengerAge || 'N/A' }}<br>
+                  <strong>Passenger Gender:</strong> {{ seat.passengerDetails?.passengerGender || 'N/A' }}<br>
+                  <strong>Seat Price:</strong> {{ seat.seatPrice || 'N/A' }}<br>
+                  <button class="btn btn-primary"(click)="cancelSeat(seat.name, seat.seatPrice)">Cancel Seat</button>
+
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      
+        <div class="row">
+          <!-- Double Upper Berth Seats - Display details of booked seats -->
+          <div class="col-md-6 mt-4">
+            <h4>Details of Booked Double Upper Berth Seats:</h4>
+            <ul class="list-group">
+              <ng-container *ngFor="let seat of doubleUpperBerthSeats">
+                <li *ngIf="seat.seatStatus === 'booked'" class="list-group-item">
+                  <strong>Seat Name:</strong> {{ seat.name }}<br>
+                  <strong>Status:</strong> <span class="badge badge-primary">{{ seat.seatStatus }}</span><br>
+                  <strong>Passenger Name:</strong> {{ seat.passengerDetails?.passengerName || 'N/A' }}<br>
+                  <strong>Passenger Age:</strong> {{ seat.passengerDetails?.passengerAge || 'N/A' }}<br>
+                  <strong>Passenger Gender:</strong> {{ seat.passengerDetails?.passengerGender || 'N/A' }}<br>
+                  <strong>Seat Price:</strong> {{ seat.seatPrice || 'N/A' }}<br>
+                  <button class="btn btn-primary"(click)="cancelSeat(seat.name, seat.seatPrice)">Cancel Seat</button>
+
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+      
+          <!-- Lower Single Seats - Display details of booked seats -->
+          <div class="col-md-6 mt-4">
+            <h4>Details of Booked Lower Single Seats:</h4>
+            <ul class="list-group">
+              <ng-container *ngFor="let seat of lowerSingleSeats">
+                <li *ngIf="seat.seatStatus === 'booked'" class="list-group-item">
+                  <strong>Seat Name:</strong> {{ seat.name }}<br>
+                  <strong>Status:</strong> <span class="badge badge-primary">{{ seat.seatStatus }}</span><br>
+                  <strong>Passenger Name:</strong> {{ seat.passengerDetails?.passengerName || 'N/A' }}<br>
+                  <strong>Passenger Age:</strong> {{ seat.passengerDetails?.passengerAge || 'N/A' }}<br>
+                  <strong>Passenger Gender:</strong> {{ seat.passengerDetails?.passengerGender || 'N/A' }}<br>
+                  <strong>Seat Price:</strong> {{ seat.seatPrice || 'N/A' }}<br>
+                  <button class="btn btn-primary"(click)="cancelSeat(seat.name, seat.seatPrice)">Cancel Seat</button>
+
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+</div>
+
 
 </div>
