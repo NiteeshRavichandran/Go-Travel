@@ -21,10 +21,26 @@
       <div class="form-group">
         <label for="passengerName{{ i }}">Name:</label>
         <input type="text" [id]="'passengerName' + i" formControlName="passengerName" class="form-control" />
+        <span
+          *ngIf="
+            !form.get('passengerName')?.valid &&
+            form.get('passengerName')?.touched
+          "
+          class="help-block"
+          >Please Enter a Valid Name</span
+        >
       </div>
       <div class="form-group">
         <label for="passengerAge{{ i }}">Age:</label>
         <input type="number" [id]="'passengerAge' + i" formControlName="passengerAge" class="form-control" />
+        <span
+          *ngIf="
+            !form.get('passengerAge')?.valid &&
+            form.get('passengerAge')?.touched
+          "
+          class="help-block"
+          >Please Book ticket for Children above 5</span
+        >
       </div>
       <div class="form-group">
         <label>Gender:</label><br>

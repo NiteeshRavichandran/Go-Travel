@@ -250,6 +250,60 @@ export class AddBusComponent {
         passengerGender: '',
       },
     },
+    DUB7: {
+      seatStatus: 'Available',
+      seatPrice: 1100,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DUB8: {
+      seatStatus: 'Available',
+      seatPrice: 1100,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DUB9: {
+      seatStatus: 'Available',
+      seatPrice: 1100,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DUB10: {
+      seatStatus: 'Available',
+      seatPrice: 1100,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DUB11: {
+      seatStatus: 'Available',
+      seatPrice: 1100,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DUB12: {
+      seatStatus: 'Available',
+      seatPrice: 1100,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
     DLB1: {
       seatStatus: 'Available',
       seatPrice: 1200,
@@ -296,6 +350,60 @@ export class AddBusComponent {
       },
     },
     DLB6: {
+      seatStatus: 'Available',
+      seatPrice: 1200,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DLB7: {
+      seatStatus: 'Available',
+      seatPrice: 1200,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DLB8: {
+      seatStatus: 'Available',
+      seatPrice: 1200,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DLB9: {
+      seatStatus: 'Available',
+      seatPrice: 1200,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DLB10: {
+      seatStatus: 'Available',
+      seatPrice: 1200,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DLB11: {
+      seatStatus: 'Available',
+      seatPrice: 1200,
+      passengerDetails: {
+        passengerName: '',
+        passengerAge: '',
+        passengerGender: '',
+      },
+    },
+    DLB12: {
       seatStatus: 'Available',
       seatPrice: 1200,
       passengerDetails: {
@@ -566,6 +674,60 @@ if (this.addBusForm.valid){
         "passengerGender": ""
       }
     },
+    "DUB7": {
+      "seatStatus": "Available",
+      "seatPrice": 1100,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DUB8": {
+      "seatStatus": "Available",
+      "seatPrice": 1100,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DUB9": {
+      "seatStatus": "Available",
+      "seatPrice": 1100,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DUB10": {
+      "seatStatus": "Available",
+      "seatPrice": 1100,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DUB11": {
+      "seatStatus": "Available",
+      "seatPrice": 1100,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DUB12": {
+      "seatStatus": "Available",
+      "seatPrice": 1100,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
     "DLB1": {
       "seatStatus": "Available",
       "seatPrice": 1200,
@@ -612,6 +774,60 @@ if (this.addBusForm.valid){
       }
     },
     "DLB6": {
+      "seatStatus": "Available",
+      "seatPrice": 1200,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DLB7": {
+      "seatStatus": "Available",
+      "seatPrice": 1200,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DLB8": {
+      "seatStatus": "Available",
+      "seatPrice": 1200,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DLB9": {
+      "seatStatus": "Available",
+      "seatPrice": 1200,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DLB10": {
+      "seatStatus": "Available",
+      "seatPrice": 1200,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DLB11": {
+      "seatStatus": "Available",
+      "seatPrice": 1200,
+      "passengerDetails": {
+        "passengerName": "",
+        "passengerAge": "",
+        "passengerGender": ""
+      }
+    },
+    "DLB12": {
       "seatStatus": "Available",
       "seatPrice": 1200,
       "passengerDetails": {

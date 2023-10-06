@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookingService } from '../booking.service';
 import { SeatService } from '../seat.service';
@@ -24,23 +24,29 @@ export class BookTicketsComponent implements OnInit {
   }
 
   initializeForms() {
-    // Clear existing forms
     this.bookingForms = [];
 
-    // Create a form for each selected seat
+    function nameValidator(control: AbstractControl): ValidationErrors | null {
+      const name = control.value;
+      if (!name || name.length < 3) {
+        return { 'minLength': true };
+      }
+      if (!/^[a-zA-Z\s]*$/.test(name)) {
+        return { 'invalidChars': true };
+      }
+      return null;
+    }
     this.selectedSeats.forEach((seat) => {
       const form = this.fb.group({
-        passengerName: [seat.passengerName || '', Validators.required],
-        passengerAge: [seat.passengerAge || 0, [Validators.required, Validators.min(1)]],
+        passengerName: [seat.passengerName || '', [Validators.required, nameValidator]],
+        passengerAge: [seat.passengerAge || '', [Validators.required, Validators.min(5)]],
         passengerGender: [seat.passengerGender || '', Validators.required],
       });
       this.bookingForms.push(form);
-  
     });
   }
 
   onSubmit() {
-    // Handle form submission here, e.g., send passenger data to the server
     if (this.bookingForms.every((form) => form.valid)) {
       const passengerDataArray = this.bookingForms.map((form, index) => ({
         seatName: this.selectedSeats[index].name,

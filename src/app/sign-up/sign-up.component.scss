@@ -56,3 +56,8 @@
 .nav-link a {
   cursor: pointer;
 }
+.nav-item.active {
+  background-color: #c9d4e0; 
+  color: #fff; 
+  border-radius: 5px; 
+}

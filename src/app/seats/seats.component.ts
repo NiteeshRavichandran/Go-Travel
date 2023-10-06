@@ -4,7 +4,7 @@ import { BookingService } from '../booking.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'; 
 
 export interface Seat {
   name: string;
