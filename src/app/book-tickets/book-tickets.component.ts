@@ -14,6 +14,7 @@ import { Seat } from '../seats/seats.component';
 export class BookTicketsComponent implements OnInit {
   selectedSeats: Seat[] = [];
   bookingForms: FormGroup[] = [];
+  sst: string;
 
   constructor(private bookingService: BookingService, private fb: FormBuilder, private http: HttpClient, private seatService: SeatService, private router: Router) {}
 
@@ -37,10 +38,12 @@ export class BookTicketsComponent implements OnInit {
       return null;
     }
     this.selectedSeats.forEach((seat) => {
+
+      const isLadiesSeat = seat.seatStatus === 'ladiesSelected';
       const form = this.fb.group({
         passengerName: [seat.passengerName || '', [Validators.required, nameValidator]],
         passengerAge: [seat.passengerAge || '', [Validators.required, Validators.min(5)]],
-        passengerGender: [seat.passengerGender || '', Validators.required],
+        passengerGender: [{ value: 'female' || '', disabled: isLadiesSeat }, Validators.required],
       });
       this.bookingForms.push(form);
     });

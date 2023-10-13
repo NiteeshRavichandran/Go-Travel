@@ -45,14 +45,15 @@
       <div class="form-group">
         <label>Gender:</label><br>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" [id]="'male' + i" value="male" formControlName="passengerGender" />
+          <input class="form-check-input" type="radio" [id]="'male' + i" value="male" [disabled]="bookingForms[i].get('passengerGender').disabled" formControlName="passengerGender" />
           <label class="form-check-label" [for]="'male' + i">Male</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" [id]="'female' + i" value="female" formControlName="passengerGender" />
+          <input class="form-check-input" type="radio" [id]="'female' + i" value="female" [disabled]="bookingForms[i].get('passengerGender').disabled" formControlName="passengerGender" />
           <label class="form-check-label" [for]="'female' + i">Female</label>
         </div>
       </div>
+      
       <button type="submit" [disabled]="!form.valid" class="btn btn-primary" *ngIf="i === bookingForms.length - 1">Submit</button>
     </form>
   </div>

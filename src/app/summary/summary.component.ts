@@ -14,14 +14,43 @@ export class SummaryComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient, private bookingService: BookingService, private seatService: SeatService) { }
 
   passengerDataArray = this.bookingService.getconfirmSeats();
+  femaleSeats = this.bookingService.getFemaleSeats();
   totalSeatPrice: number;
   
   ngOnInit(){
-    console.log(this.passengerDataArray + 'pass');
+    // console.log(this.passengerDataArray + 'pass');
     this.totalSeatPrice = this.passengerDataArray.reduce((total, data) => total + data.seatPrice, 0);
   }
 
   onSubmit(){
+
+    for(const dta of this.femaleSeats){
+
+      const data = {
+        seatStatus: 'ladies',
+        seatPrice: dta.seatPrice,
+        passengerDetails: {
+         passengerName: '',
+         passengerAge: '',
+         passengerGender: '',
+        },
+      }
+
+      console.log(dta);
+      const busId = this.seatService.getBusData();
+
+      this.http.put('https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' + busId +'/seats/' + dta.name +'.json', data)
+      .subscribe((res) =>{
+        // console.log(dta.seatName + res+ 'success'+ busId) ;
+      },
+      error => {
+        // console.log(error);
+        window.alert('Error: ' + error.message);
+      }
+      );
+    }
+
+
     for(const dta of this.passengerDataArray){
 
       const data = {
@@ -41,7 +70,7 @@ export class SummaryComponent implements OnInit{
         // console.log(dta.seatName + res+ 'success'+ busId);
 
         window.alert('Ticket booked successfully!');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/user']);
       },
       error => {
         // console.log(error);
@@ -49,6 +78,7 @@ export class SummaryComponent implements OnInit{
       }
       );
     }
+
   }
 
 

@@ -1,16 +1,19 @@
 
 .seats {
-  width: 400px;
-  height: 750px;
+  width: 275px;
+  height: 650px;
   /* border: solid black; */
   display: flex;
   justify-content: center; 
-  column-gap: 10px;
+  column-gap: 35px;
   background-color: #E0E0E0;
+  margin-right: 20px;
+
 }
 
 .ctnr{
   display:flex;
+  margin-top: 30px;
 }
 
 .seat-container {
@@ -25,28 +28,28 @@
 
 /* Add styles for individual seats */
 .seat {
-  width: 60px; /* Adjust the width as needed */
-  height: 50px; /* Adjust the height as needed */
+  width: 45px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
   margin: 5px; /* Adjust the margin as needed */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(0, 0, 0);
+  /* border: 1px solid rgb(0, 0, 0); */
   border-radius: 10px;
   cursor: pointer;
   
 }
 
 .berth {
-  width: 65px; /* Adjust the width as needed */
-  height: 110px; /* Adjust the height as needed */
+  width: 50px; /* Adjust the width as needed */
+  height: 90px; /* Adjust the height as needed */
   margin: 5px; /* Adjust the margin as needed */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(0, 0, 0);
+  /* border: 1px solid rgb(0, 0, 0); */
   border-radius: 10px;
   cursor: pointer;
 
@@ -62,7 +65,12 @@
 }
 
 .ladies {
-  background-color: #FFC0CB; 
+  /* background-color: #FFC0CB;  */
+  background-color:  rgb(255, 193, 202); 
+}
+
+.ladiesSelected {
+  background-color: rgb(219, 141, 154);
 }
 
 .selected {
