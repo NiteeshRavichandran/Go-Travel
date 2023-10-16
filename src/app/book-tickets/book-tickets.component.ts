@@ -42,7 +42,7 @@ export class BookTicketsComponent implements OnInit {
       const isLadiesSeat = seat.seatStatus === 'ladiesSelected';
       const form = this.fb.group({
         passengerName: [seat.passengerName || '', [Validators.required, nameValidator]],
-        passengerAge: [seat.passengerAge || '', [Validators.required, Validators.min(5)]],
+        passengerAge: [seat.passengerAge || '', [Validators.required, Validators.min(5), Validators.max(125)]],
         passengerGender: [{ value: 'female' || '', disabled: isLadiesSeat }, Validators.required],
       });
       this.bookingForms.push(form);

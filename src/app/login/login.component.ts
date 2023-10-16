@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  errorMessage: any;
   constructor(private router: Router, private authService: AuthService){}
   loginForm!: FormGroup;
 
@@ -34,7 +35,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/user']);
       },
       error => {
-        console.log(error);
+        // console.log(error);
+        this.errorMessage = error;
+        this.loginForm.reset();
       }
       );
     }

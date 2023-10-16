@@ -138,15 +138,15 @@ export class AuthService {
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
     }
+    // console.log(JSON.stringify(errorRes, null, 2));
+
     switch (errorRes.error.error.message) {
       case 'EMAIL_EXISTS':
         errorMessage = 'This email exists already';
         break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist.';
-        break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct.';
+      
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errorMessage = 'Enter Valid Credentials';
         break;
     }
     return throwError(errorMessage);

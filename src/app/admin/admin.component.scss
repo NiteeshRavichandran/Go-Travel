@@ -1,7 +1,21 @@
 .viewContainer{
   padding: 20px;
   margin: 40px;
+  margin-top: 10px;
   box-shadow: 3px;
   border: 2px solid blueviolet;
   width: 800px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #fff; 
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  background-color: #333; 
+}
+
+.navbar-nav .nav-item .nav-link.active {
+  background-color: #333; 
+  color: #fff; 
 }

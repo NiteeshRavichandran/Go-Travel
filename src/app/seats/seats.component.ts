@@ -27,12 +27,21 @@ export class SeatsComponent {
     private router: Router,
     private authService: AuthService,
     private http: HttpClient
-  ) {}
+  ) {
+    setTimeout(() => {
+    this.allSeats = this.allSeats.concat(
+      this.singleUpperBerthSeats,
+      this.doubleLowerBerthSeats,
+      this.doubleUpperBerthSeats,
+      this.lowerSingleSeats
+    );}, 300);
+  }
 
   lowerSingleSeats: any[] = [];
   singleUpperBerthSeats: any[] = [];
   doubleLowerBerthSeats: any[] = [];
   doubleUpperBerthSeats: any[] = [];
+  allSeats: any[] = [];
 
   isAdmin: boolean;
 
@@ -83,7 +92,7 @@ export class SeatsComponent {
       return aNumber - bNumber;
     });
 
-    setTimeout(() => {}, 800);
+    setTimeout(() => {}, 300);
 
     // console.log(this.lowerSingleSeats);
     // console.log(this.singleUpperBerthSeats);

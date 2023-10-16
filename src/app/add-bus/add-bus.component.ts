@@ -25,10 +25,11 @@ export class AddBusComponent {
     });
   }
 
-  AddBus(){
+  newBus(id : string){
   const busData = {
   busName: this.addBusForm.value.busName,
   busNo: this.addBusForm.value.busNo,
+  busId: id,
   fromPlace: this.addBusForm.value.fromPlace,
   toPlace: this.addBusForm.value.toPlace,
   boardingTime: this.addBusForm.value.boardingTime,
@@ -414,11 +415,26 @@ export class AddBusComponent {
     },
   },
 };
+return busData;
+  }
+
+
+AddBus(){
+const newbus ={}; 
+
 if (this.addBusForm.valid){
   // console.log(busData);
-  this.http.post('https://go-travel-42246-default-rtdb.firebaseio.com/busses.json', busData).subscribe(
-  responseData => {
-    console.log('bus added successfully');
+  this.http.post('https://go-travel-42246-default-rtdb.firebaseio.com/busses.json', newbus).subscribe(
+    (responseData: any) => {
+    // console.log('bus added successfully' + responseData);
+    // const busid = (JSON.stringify(responseData))name;
+    // console.log(JSON.stringify(responseData));
+    const busid = (responseData.name).substring(1);
+    console.log(busid);
+    const busdata = this.newBus(busid);
+
+    this.http.put('https://go-travel-42246-default-rtdb.firebaseio.com/busses/-'+ busid +'.json', busdata).subscribe();
+
   }    
   );
   this.router.navigate(['/admin']);

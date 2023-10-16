@@ -1,13 +1,10 @@
 <nav class="navbar navbar-dark bg-primary navbar-expand">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/user">User</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="/user">User</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/">View Tickets</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/">Logout</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="/">Logout</a>
     </li>
   </ul>
 </nav>
@@ -15,9 +12,9 @@
 <router-outlet></router-outlet>
 <div class="row">
   <div class="col-xs-12 col-md-8"></div>
-<div class="viewContainer">
-
+  
   <div *ngFor="let bus of buses; let busId = index" class="bus-card">
+    <div class="viewContainer">
   <h2>{{ bus.busName }}</h2>
   <p>Bus Number: {{ bus.busNo }}</p>
   <p>From: {{ bus.fromPlace }}</p>

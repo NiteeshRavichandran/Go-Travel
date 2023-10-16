@@ -139,6 +139,11 @@
     class="help-block"
     >Passwords do not match.</span
   >
+  <span
+    *ngIf="errorMessage"
+    class="help-block"
+    >{{errorMessage}}</span
+  >
         </div>
         <div class="btn-container">
           <button class="btn btn-dark" type="submit">Signup</button>

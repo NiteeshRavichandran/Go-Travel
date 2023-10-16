@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./admin-login.component.scss']
 })
 export class AdminLoginComponent {
+  errorMessage: any;
 
   constructor(private router: Router, private authService: AuthService){}
   adminLogin!: FormGroup; 
@@ -31,7 +32,9 @@ onSubmit() {
       this.router.navigate(['/admin']);
     },
     error => {
-      console.log(error);
+      // console.log(error);
+      this.errorMessage = error;
+      this.adminLogin.reset();
     }
     );
   }
