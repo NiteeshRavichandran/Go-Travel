@@ -35,7 +35,12 @@ export class SeatsComponent {
       this.doubleLowerBerthSeats,
       this.doubleUpperBerthSeats,
       this.lowerSingleSeats
-    );}, 300);
+    );
+    this.allSeats2 = this.allSeats2.concat(
+      this.doubleLowerBerthSeats,
+      this.doubleUpperBerthSeats
+    );
+  }, 500);
   }
 
   lowerSingleSeats: any[] = [];
@@ -43,6 +48,7 @@ export class SeatsComponent {
   doubleLowerBerthSeats: any[] = [];
   doubleUpperBerthSeats: any[] = [];
   allSeats: any[] = [];
+  allSeats2: any[] = [];
 
   isAdmin: boolean;
 
@@ -168,6 +174,39 @@ export class SeatsComponent {
     // console.log(this.selectedSeats);
   }
 
+  adjacent(seatname: string){
+
+    this.allSeats2.forEach((seat, index, array) => {
+      if (seat.name === seatname) {
+        const adjacentSeatIndex = ((index%12) + 1 <= 6 ? index + 6 : index - 6);
+        if (array[adjacentSeatIndex].seatStatus === 'ladies') {
+          const data = {
+            seatStatus: 'Available',
+            seatPrice: array[adjacentSeatIndex].seatPrice,
+            passengerDetails: {
+              passengerName: '',
+              passengerAge: '',
+              passengerGender: '',
+            },
+          };
+          
+          const busId = this.seatService.getBusData();
+          this.http
+            .put(
+              'https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' +
+                busId +
+                '/seats/' +
+                array[adjacentSeatIndex].name +
+                '.json',
+              data
+            ).subscribe();
+        }
+      }
+    });
+
+  }
+
+
   cancelSeat(seatName: string, seatprice: number) {
     const data = {
       seatStatus: 'Available',
@@ -193,7 +232,7 @@ export class SeatsComponent {
       .subscribe(
         (res) => {
           // console.log(dta.seatName + res+ 'success'+ busId);
-
+          this.adjacent(seatName);
           window.alert('Ticket canceled successfully!');
         },
         (error) => {
@@ -201,5 +240,6 @@ export class SeatsComponent {
           window.alert('Error: ' + error.message);
         }
       );
+
   }
 }

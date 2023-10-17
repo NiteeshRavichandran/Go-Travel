@@ -63,7 +63,7 @@ export class SummaryComponent implements OnInit{
         passengerDetails: {
          passengerName: dta.passengerData.passengerName,
          passengerAge: dta.passengerData.passengerAge,
-         passengerGender: dta.passengerData.passengerGender,
+         passengerGender: dta.passengerData.passengerGender || 'female',
         },
       }
 

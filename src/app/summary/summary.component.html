@@ -15,7 +15,7 @@
       <h5 class="card-title">Passenger Information</h5>
       <p class="card-text"><strong>Passenger Name:</strong> {{ data.passengerData.passengerName }}</p>
       <p class="card-text"><strong>Passenger Age:</strong> {{ data.passengerData.passengerAge }}</p>
-      <p class="card-text"><strong>Passenger Gender:</strong> {{ data.passengerData.passengerGender }}</p>
+      <p class="card-text"><strong>Passenger Gender:</strong> {{ data.passengerData.passengerGender || 'female' }}</p>
     </div>
     <div class="card-body">
       <h5 class="card-title">Seat Details</h5>
