@@ -18,6 +18,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { UserComponent } from './user/user.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { SummaryComponent } from './summary/summary.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego",
@@ -40,7 +41,8 @@ const firebaseConfig = {
     AdminLoginComponent,
     UserComponent,
     BookTicketsComponent,
-    SummaryComponent
+    SummaryComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

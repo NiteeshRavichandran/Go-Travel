@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ReturnStatement } from '@angular/compiler';
 
 export interface Seat {
   name: string;
@@ -106,7 +107,14 @@ export class SeatsComponent {
   passengerAge: number = 0;
   passengerGender: string = '';
 
+  logout(){
+    this.authService.logout();
+  }
+
   toggleSeatStatus(seat: any) {
+    if (this.isAdmin){
+      return;
+    }
     if (seat.seatStatus === 'Available' && this.selectedSeats.length < 5 ) {
       seat.seatStatus = 'selected';
       this.selectedSeats.push(seat);

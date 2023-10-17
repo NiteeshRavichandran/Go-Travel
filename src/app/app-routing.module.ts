@@ -10,20 +10,20 @@ import { UserComponent } from './user/user.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { SummaryComponent } from './summary/summary.component';
 import { AuthGuardService } from './auth-guard.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent},
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService], children: [
-    { path: 'addBus', component: AddBusComponent}
-  ]},
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
+  { path: 'addBus', canActivate: [AuthGuardService], component: AddBusComponent},
   { path: 'user', canActivate: [AuthGuardService],component: UserComponent},
   { path: 'adminLogin', component: AdminLoginComponent},
   { path: 'book', canActivate: [AuthGuardService],component: BookTicketsComponent},
   { path: 'seats', canActivate: [AuthGuardService],component: SeatsComponent},
   { path: 'summary', canActivate: [AuthGuardService],component: SummaryComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
-  { path: '**', redirectTo: '/login' } 
+  { path: '**', component:PageNotFoundComponent } 
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { BookingService } from '../booking.service';
 import { SeatService } from '../seat.service';
 import { Seat } from '../seats/seats.component';
@@ -16,7 +17,7 @@ export class BookTicketsComponent implements OnInit {
   bookingForms: FormGroup[] = [];
   sst: string;
 
-  constructor(private bookingService: BookingService, private fb: FormBuilder, private http: HttpClient, private seatService: SeatService, private router: Router) {}
+  constructor(private bookingService: BookingService, private fb: FormBuilder, private http: HttpClient, private seatService: SeatService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     // Get the selected seats data directly from the service
@@ -47,6 +48,10 @@ export class BookTicketsComponent implements OnInit {
       });
       this.bookingForms.push(form);
     });
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   onSubmit() {

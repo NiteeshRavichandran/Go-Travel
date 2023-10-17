@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-add-bus',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class AddBusComponent {
   // busData: { busName: any; busNo: any; fromPlace: any; toPlace: any; boardingTime: any; reachingTime: any; seats: { LS1: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS2: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS3: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS4: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS5: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS6: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS7: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS8: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS9: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS10: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS11: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; LS12: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; SUB1: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; SUB2: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; SUB3: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; SUB4: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; SUB5: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; SUB6: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DUB1: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DUB2: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DUB3: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DUB4: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DUB5: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DUB6: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DLB1: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DLB2: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DLB3: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DLB4: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DLB5: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; DLB6: { seatStatus: string; seatPrice: number; passengerDetails: { passengerName: string; passengerAge: string; passengerGender: string; }; }; }; };
 
-  constructor(private router: Router, private http: HttpClient){}
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService){}
   
   addBusForm: FormGroup;
   ngOnInit(){
@@ -418,6 +419,9 @@ export class AddBusComponent {
 return busData;
   }
 
+  logout(){
+    this.authService.logout();
+  }
 
 AddBus(){
 const newbus ={}; 

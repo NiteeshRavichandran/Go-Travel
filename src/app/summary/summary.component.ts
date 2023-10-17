@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { BookingService } from '../booking.service';
 import { SeatService } from '../seat.service';
 
@@ -11,7 +12,7 @@ import { SeatService } from '../seat.service';
 })
 export class SummaryComponent implements OnInit{
 
-  constructor(private router: Router, private http: HttpClient, private bookingService: BookingService, private seatService: SeatService) { }
+  constructor(private authService: AuthService,private router: Router, private http: HttpClient, private bookingService: BookingService, private seatService: SeatService) { }
 
   passengerDataArray = this.bookingService.getconfirmSeats();
   femaleSeats = this.bookingService.getFemaleSeats();
@@ -22,6 +23,9 @@ export class SummaryComponent implements OnInit{
     this.totalSeatPrice = this.passengerDataArray.reduce((total, data) => total + data.seatPrice, 0);
   }
 
+  logout(){
+    this.authService.logout();
+  }
   onSubmit(){
 
     for(const dta of this.femaleSeats){
