@@ -1,7 +1,6 @@
 .seats {
   width: 275px;
   height: 650px;
-  /* border: solid black; */
   display: flex;
   justify-content: center;
   column-gap: 35px;
@@ -54,20 +53,26 @@
   background-color: #e97f68;
   cursor: not-allowed;
 }
-.admin {
-  cursor: not-allowed;
-}
-.available {
+
+.Available {
   background-color: #ffffff;
 }
 
 .ladies {
   /* background-color: #FFC0CB;  */
-  background-color: rgb(255, 193, 202);
+  background-color: rgb(250, 207, 213);
 }
 
 .ladiesSelected {
-  background-color: rgb(219, 141, 154);
+  background-color: rgb(219, 120, 136);
+}
+
+.gents {
+  background-color: rgb(187, 169, 169);
+}
+
+.gentsSelected {
+  background-color: rgb(114, 105, 105);
 }
 
 .selected {

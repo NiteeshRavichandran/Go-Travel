@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { BookingService } from '../booking.service';
@@ -15,7 +15,7 @@ import { Seat } from '../seats/seats.component';
 export class BookTicketsComponent implements OnInit {
   selectedSeats: Seat[] = [];
   bookingForms: FormGroup[] = [];
-  sst: string;
+  gender: string;
 
   constructor(private bookingService: BookingService, private fb: FormBuilder, private http: HttpClient, private seatService: SeatService, private router: Router, private authService: AuthService) {}
 
@@ -38,14 +38,20 @@ export class BookTicketsComponent implements OnInit {
       }
       return null;
     }
-    this.selectedSeats.forEach((seat) => {
 
+    this.selectedSeats.forEach((seat) => {
       const isLadiesSeat = seat.seatStatus === 'ladiesSelected';
-      const form = this.fb.group({
-        passengerName: [seat.passengerName || '', [Validators.required, nameValidator]],
-        passengerAge: [seat.passengerAge || '', [Validators.required, Validators.min(5), Validators.max(125)]],
-        passengerGender: [{ value: 'female' || '', disabled: isLadiesSeat }, Validators.required],
+      const isGentsSeat = seat.seatStatus === 'gentsSelected';
+      if (seat.seatStatus !== 'selected'){
+        this.gender = isGentsSeat ? 'male' : 'female';
+        this.bookingService.setGender(this.gender);
+      }
+      const form = new FormGroup({
+        passengerName: new FormControl(seat.passengerName || '', [Validators.required, nameValidator]),
+        passengerAge: new FormControl(seat.passengerAge || '', [Validators.required, Validators.min(5), Validators.max(125)]),
+        passengerGender: new FormControl({ value: this.gender || '', disabled: isLadiesSeat || isGentsSeat }, Validators.required),
       });
+
       this.bookingForms.push(form);
     });
   }

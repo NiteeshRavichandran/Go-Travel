@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { BookingService } from '../booking.service';
@@ -12,11 +12,12 @@ import { SeatService } from '../seat.service';
 })
 export class SummaryComponent implements OnInit{
 
-  constructor(private authService: AuthService,private router: Router, private http: HttpClient, private bookingService: BookingService, private seatService: SeatService) { }
+  constructor(private authService: AuthService,private cd: ChangeDetectorRef,private router: Router, private http: HttpClient, private bookingService: BookingService, private seatService: SeatService) { }
 
   passengerDataArray = this.bookingService.getconfirmSeats();
   femaleSeats = this.bookingService.getFemaleSeats();
   totalSeatPrice: number;
+  gender = this.bookingService.getGender();
   
   ngOnInit(){
     // console.log(this.passengerDataArray + 'pass');
@@ -56,14 +57,16 @@ export class SummaryComponent implements OnInit{
 
 
     for(const dta of this.passengerDataArray){
-
+      
+      this.gender = this.bookingService.getGender();
+      this.cd.detectChanges();
       const data = {
         seatStatus: 'booked',
         seatPrice: dta.seatPrice,
         passengerDetails: {
          passengerName: dta.passengerData.passengerName,
          passengerAge: dta.passengerData.passengerAge,
-         passengerGender: dta.passengerData.passengerGender || 'female',
+         passengerGender: dta.passengerData.passengerGender || this.gender,
         },
       }
 

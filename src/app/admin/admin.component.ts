@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
     this.seatService.setSeatData(busid);   
     this.seatService.setBusData(busid);
     setTimeout(() => {
-      this.router.navigate(['/seats']);
+      this.router.navigate(['/seat']);
       this.viewseats=true;
     }, 800);
   }

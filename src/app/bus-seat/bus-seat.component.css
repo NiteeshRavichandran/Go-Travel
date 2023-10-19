@@ -1,0 +1,118 @@
+.seats {
+  width: 275px;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  column-gap: 35px;
+  background-color: #dacdcd;
+  margin-right: 20px;
+}
+
+.ctnr {
+  display: flex;
+  margin-top: 30px;
+}
+
+.seat-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  /* Set a height for the container if needed */
+}
+
+/* Add styles for individual seats */
+.seat {
+  width: 45px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  margin: 5px; /* Adjust the margin as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid rgb(0, 0, 0); */
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.berth {
+  width: 50px; /* Adjust the width as needed */
+  height: 90px; /* Adjust the height as needed */
+  margin: 5px; /* Adjust the margin as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid rgb(0, 0, 0); */
+  border-radius: 10px;
+  cursor: pointer;
+}
+/* Add styles for seat statuses */
+.booked {
+  background-color: #e97f68;
+  cursor: not-allowed;
+}
+.admin {
+  cursor: not-allowed;
+}
+.Available {
+  background-color: #ffffff;
+}
+
+.ladies {
+  /* background-color: #FFC0CB;  */
+  background-color: rgb(250, 207, 213);
+}
+
+
+.gents {
+  background-color: rgb(187, 169, 169);
+}
+
+
+.selected {
+  background-color: #66cdaa;
+}
+
+.legend {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 20px;
+  max-width: 300px;
+  height: auto;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-color {
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.seat-item {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+label {
+  user-select: none;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #fff;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  font-weight: bold;
+}
+
+.nav-item.active {
+  font-weight: bolder;
+}

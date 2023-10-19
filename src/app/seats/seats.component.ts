@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { SeatService } from '../seat.service';
 import { BookingService } from '../booking.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ReturnStatement } from '@angular/compiler';
 
 export interface Seat {
   name: string;
-  seatStatus: 'Available' | 'selected' | 'booked' | 'ladies' | 'ladiesSelected';
+  seatStatus: 'Available' | 'selected' | 'booked' | 'ladies' | 'ladiesSelected' | 'gents' | 'gentsSelected';
   passengerName?: string;
   passengerAge?: number;
   passengerGender?: string;
@@ -27,7 +26,8 @@ export class SeatsComponent {
     private bookingService: BookingService,
     private router: Router,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private cd: ChangeDetectorRef
   ) {
     setTimeout(() => {
     this.allSeats = this.allSeats.concat(
@@ -133,6 +133,15 @@ export class SeatsComponent {
       if (index !== -1) {
         this.selectedSeats.splice(index, 1);
       }
+    } else if (seat.seatStatus === 'gents' && this.selectedSeats.length < 5 ) {
+      seat.seatStatus = 'gentsSelected';
+      this.selectedSeats.push(seat);
+    } else if (seat.seatStatus === 'gentsSelected' && this.selectedSeats.length < 5 ) {
+      seat.seatStatus = 'gents';
+      const index = this.selectedSeats.findIndex((s) => s.name === seat.name);
+      if (index !== -1) {
+        this.selectedSeats.splice(index, 1);
+      }
     } else if (seat.seatStatus === 'selected') {
       seat.seatStatus = 'Available';
       const index = this.selectedSeats.findIndex((s) => s.name === seat.name);
@@ -154,14 +163,18 @@ export class SeatsComponent {
     });
   }
 
-  getSeatClass(seat: Seat) {
+  getSeatClass(seatStatus: string): { [key: string]: boolean } {
     return {
-      booked: seat.seatStatus === 'booked',
-      available: seat.seatStatus === 'Available',
-      selected: seat.seatStatus === 'selected',
-      ladies: seat.seatStatus === 'ladies',
+      booked: seatStatus === 'booked',
+      Available: seatStatus === 'Available',
+      selected: seatStatus === 'selected',
+      ladies: seatStatus === 'ladies',
+      ladiesSelected: seatStatus === 'ladiesSelected',
+      gents: seatStatus === 'gents',
+      gentsSelected: seatStatus === 'gentsSelected',
     };
   }
+  
 
   bookSelectedSeats() {
     if (this.selectedSeats.length === 0) {
@@ -174,72 +187,4 @@ export class SeatsComponent {
     // console.log(this.selectedSeats);
   }
 
-  adjacent(seatname: string){
-
-    this.allSeats2.forEach((seat, index, array) => {
-      if (seat.name === seatname) {
-        const adjacentSeatIndex = ((index%12) + 1 <= 6 ? index + 6 : index - 6);
-        if (array[adjacentSeatIndex].seatStatus === 'ladies') {
-          const data = {
-            seatStatus: 'Available',
-            seatPrice: array[adjacentSeatIndex].seatPrice,
-            passengerDetails: {
-              passengerName: '',
-              passengerAge: '',
-              passengerGender: '',
-            },
-          };
-          
-          const busId = this.seatService.getBusData();
-          this.http
-            .put(
-              'https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' +
-                busId +
-                '/seats/' +
-                array[adjacentSeatIndex].name +
-                '.json',
-              data
-            ).subscribe();
-        }
-      }
-    });
-
-  }
-
-
-  cancelSeat(seatName: string, seatprice: number) {
-    const data = {
-      seatStatus: 'Available',
-      seatPrice: seatprice,
-      passengerDetails: {
-        passengerName: '',
-        passengerAge: '',
-        passengerGender: '',
-      },
-    };
-
-    const busId = this.seatService.getBusData();
-
-    this.http
-      .put(
-        'https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' +
-          busId +
-          '/seats/' +
-          seatName +
-          '.json',
-        data
-      )
-      .subscribe(
-        (res) => {
-          // console.log(dta.seatName + res+ 'success'+ busId);
-          this.adjacent(seatName);
-          window.alert('Ticket canceled successfully!');
-        },
-        (error) => {
-          // console.log(error);
-          window.alert('Error: ' + error.message);
-        }
-      );
-
-  }
 }

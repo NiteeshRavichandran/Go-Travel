@@ -11,10 +11,12 @@ import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { SummaryComponent } from './summary/summary.component';
 import { AuthGuardService } from './auth-guard.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BusSeatComponent } from './bus-seat/bus-seat.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent},
+  { path: 'seat', component: BusSeatComponent},
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
   { path: 'addBus', canActivate: [AuthGuardService], component: AddBusComponent},
   { path: 'user', canActivate: [AuthGuardService],component: UserComponent},
