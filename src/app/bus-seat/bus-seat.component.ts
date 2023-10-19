@@ -36,13 +36,11 @@ export class BusSeatComponent {
   allSeats: any[] = [];
   allSeats2: any[] = [];
 
-  isAdmin: boolean;
 
   ngOnInit(): void {
     const seatData = this.seatService.getSeatData();
     // console.log(seatData);
-    this.isAdmin = this.authService.isAdmin();
-    console.log(this.isAdmin);
+   
 
     for (const seatName in seatData) {
       if (seatData.hasOwnProperty(seatName)) {

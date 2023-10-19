@@ -12,7 +12,7 @@ export class BookingService {
   private selectedSeatsData: Seat[] = [];
   private adjacentSeatsData: any[] = [];
   private confirmseats: any[] = [];
-  private gender ='';
+  private gender =[];
 
   getSelectedSeatsData() {
     // console.log(this.selectedSeatsData);
@@ -26,7 +26,7 @@ export class BookingService {
     // console.log(this.selectedSeatsData);
   }
 
-  setGender(gender: string){
+  setGender(gender: any[]){
     this.gender=gender;
   }
 
@@ -34,7 +34,7 @@ export class BookingService {
     return this.gender;
   }
 
-  getFemaleSeats(){
+  getAdjSeats(){
     return this.adjacentSeatsData;
   }
 

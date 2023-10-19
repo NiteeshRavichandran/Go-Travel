@@ -16,7 +16,7 @@ export class BookTicketsComponent implements OnInit {
   selectedSeats: Seat[] = [];
   bookingForms: FormGroup[] = [];
   gender: string;
-
+  genderArray : any =[];
   constructor(private bookingService: BookingService, private fb: FormBuilder, private http: HttpClient, private seatService: SeatService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -42,9 +42,11 @@ export class BookTicketsComponent implements OnInit {
     this.selectedSeats.forEach((seat) => {
       const isLadiesSeat = seat.seatStatus === 'ladiesSelected';
       const isGentsSeat = seat.seatStatus === 'gentsSelected';
+      // console.log(isGentsSeat);
       if (seat.seatStatus !== 'selected'){
         this.gender = isGentsSeat ? 'male' : 'female';
-        this.bookingService.setGender(this.gender);
+        this.genderArray.push(this.gender);
+        // this.bookingService.setGender(this.gender);
       }
       const form = new FormGroup({
         passengerName: new FormControl(seat.passengerName || '', [Validators.required, nameValidator]),
@@ -54,6 +56,7 @@ export class BookTicketsComponent implements OnInit {
 
       this.bookingForms.push(form);
     });
+    this.bookingService.setGender(this.genderArray);
   }
 
   logout(){

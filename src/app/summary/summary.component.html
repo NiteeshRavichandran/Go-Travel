@@ -10,12 +10,12 @@
 </nav>
 
 <div class="container mt-4">
-  <div *ngFor="let data of passengerDataArray" class="card mb-3">
+  <div *ngFor="let data of passengerDataArray; let i = index" class="card mb-3">
     <div *ngIf="data.passengerData" class="card-body">
       <h5 class="card-title">Passenger Information</h5>
       <p class="card-text"><strong>Passenger Name:</strong> {{ data.passengerData.passengerName }}</p>
       <p class="card-text"><strong>Passenger Age:</strong> {{ data.passengerData.passengerAge }}</p>
-      <p class="card-text"><strong>Passenger Gender:</strong> {{ data.passengerData.passengerGender || gender }}</p>
+      <p class="card-text"><strong>Passenger Gender:</strong> {{ data.passengerData.passengerGender || gender[i] }}</p>
     </div>
     <div class="card-body">
       <h5 class="card-title">Seat Details</h5>

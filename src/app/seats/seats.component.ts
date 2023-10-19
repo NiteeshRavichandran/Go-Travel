@@ -50,13 +50,10 @@ export class SeatsComponent {
   allSeats: any[] = [];
   allSeats2: any[] = [];
 
-  isAdmin: boolean;
 
   ngOnInit(): void {
     const seatData = this.seatService.getSeatData();
     // console.log(seatData);
-    this.isAdmin = this.authService.isAdmin();
-    console.log(this.isAdmin);
 
     for (const seatName in seatData) {
       if (seatData.hasOwnProperty(seatName)) {
@@ -103,8 +100,8 @@ export class SeatsComponent {
 
     // console.log(this.lowerSingleSeats);
     // console.log(this.singleUpperBerthSeats);
-    // console.log(this.doubleLowerBerthSeats);
-    // console.log(this.doubleUpperBerthSeats);
+    console.log(this.doubleLowerBerthSeats);
+    console.log(this.doubleUpperBerthSeats);
   }
   // const seatData = ti
   selectedSeats: Seat[] = [];
@@ -118,9 +115,6 @@ export class SeatsComponent {
   }
 
   toggleSeatStatus(seat: any) {
-    if (this.isAdmin){
-      return;
-    }
     if (seat.seatStatus === 'Available' && this.selectedSeats.length < 5 ) {
       seat.seatStatus = 'selected';
       this.selectedSeats.push(seat);

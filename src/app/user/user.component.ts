@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   constructor(private authService: AuthService,private http: HttpClient,private seatService: SeatService, private router: Router) { }
    ngOnInit(): void {
      this.http.get('https://go-travel-42246-default-rtdb.firebaseio.com/busses.json').subscribe((posts: any) => {
-      console.log(posts);
+      // console.log(posts);
       this.buses = Object.values(posts);
      });
    }

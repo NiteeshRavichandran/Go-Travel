@@ -15,13 +15,15 @@ export class SummaryComponent implements OnInit{
   constructor(private authService: AuthService,private cd: ChangeDetectorRef,private router: Router, private http: HttpClient, private bookingService: BookingService, private seatService: SeatService) { }
 
   passengerDataArray = this.bookingService.getconfirmSeats();
-  femaleSeats = this.bookingService.getFemaleSeats();
+  adjSeats = this.bookingService.getAdjSeats();
+  adjSeatStatus:any[] = [];
   totalSeatPrice: number;
-  gender = this.bookingService.getGender();
+  gender: any[] = this.bookingService.getGender();
   
   ngOnInit(){
     // console.log(this.passengerDataArray + 'pass');
     this.totalSeatPrice = this.passengerDataArray.reduce((total, data) => total + data.seatPrice, 0);
+    // console.log(this.femaleSeats);
   }
 
   logout(){
@@ -29,46 +31,28 @@ export class SummaryComponent implements OnInit{
   }
   onSubmit(){
 
-    for(const dta of this.femaleSeats){
-
-      const data = {
-        seatStatus: 'ladies',
-        seatPrice: dta.seatPrice,
-        passengerDetails: {
-         passengerName: '',
-         passengerAge: '',
-         passengerGender: '',
-        },
-      }
-
-      console.log(dta);
-      const busId = this.seatService.getBusData();
-
-      this.http.put('https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' + busId +'/seats/' + dta.name +'.json', data)
-      .subscribe((res) =>{
-        // console.log(dta.seatName + res+ 'success'+ busId) ;
-      },
-      error => {
-        // console.log(error);
-        window.alert('Error: ' + error.message);
-      }
-      );
-    }
-
-
-    for(const dta of this.passengerDataArray){
+    this.gender = this.bookingService.getGender();
+    // console.log(this.gender);
+    
+    for (const [index, dta] of this.passengerDataArray.entries()){
       
-      this.gender = this.bookingService.getGender();
       this.cd.detectChanges();
+      if (dta.passengerData.passengerGender === 'female'){
+        this.adjSeatStatus.push('female');
+      }
+      if (dta.passengerData.passengerGender === 'male'){
+        this.adjSeatStatus.push('male');
+      }
       const data = {
         seatStatus: 'booked',
         seatPrice: dta.seatPrice,
         passengerDetails: {
-         passengerName: dta.passengerData.passengerName,
-         passengerAge: dta.passengerData.passengerAge,
-         passengerGender: dta.passengerData.passengerGender || this.gender,
-        },
+          passengerName: dta.passengerData.passengerName,
+          passengerAge: dta.passengerData.passengerAge,
+          passengerGender: this.gender[index],
+        }
       }
+      // console.log(this.gender[index]);
 
       const busId = this.seatService.getBusData();
 
@@ -85,6 +69,45 @@ export class SummaryComponent implements OnInit{
       }
       );
     }
+
+    // console.log(this.adjSeatStatus);
+
+    for (const [index, dta] of this.adjSeats.entries()){
+
+      const male = {
+        seatStatus: 'gents',
+        seatPrice: dta.seatPrice,
+        passengerDetails: {
+         passengerName: '',
+         passengerAge: '',
+         passengerGender: '',
+        },
+      }
+      const female = {
+        seatStatus: 'ladies',
+        seatPrice: dta.seatPrice,
+        passengerDetails: {
+         passengerName: '',
+         passengerAge: '',
+         passengerGender: '',
+        },
+      }
+
+      const data = this.adjSeatStatus[index] === 'male' ? male : female;
+
+      const busId = this.seatService.getBusData();
+
+      this.http.put('https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' + busId +'/seats/' + dta.name +'.json', data)
+      .subscribe((res) =>{
+        // console.log(dta.seatName + res+ 'success'+ busId) ;
+      },
+      error => {
+        // console.log(error);
+        window.alert('Error: ' + error.message);
+      }
+      );
+    }
+
 
   }
 

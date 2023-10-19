@@ -25,7 +25,7 @@ export class AuthService {
   
   constructor(private http: HttpClient, private router: Router) { }
 
-  admin = false;
+
 
   signIn(email: string, password: string){
     return this.http.post <AuthResponseData>(
@@ -69,13 +69,6 @@ export class AuthService {
     );
   }
   
-  itsAdmin(){
-    this.admin = true;
-  }
-
-  isAdmin(){
-    return this.admin;
-  }
 
   autoLogin() {
     const userData: {
@@ -106,7 +99,6 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    this.admin=false;
     this.router.navigate(['/login']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
