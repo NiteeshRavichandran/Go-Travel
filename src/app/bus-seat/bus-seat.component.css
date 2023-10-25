@@ -116,3 +116,7 @@ label {
 .nav-item.active {
   font-weight: bolder;
 }
+
+.table {
+  border-color: rgb(211, 198, 198);
+}

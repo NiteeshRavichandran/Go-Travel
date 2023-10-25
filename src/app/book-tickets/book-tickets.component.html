@@ -9,7 +9,8 @@
   </ul>
 </nav>
 
-<div class="login-container">
+
+<div class="login-container" >
   <div class="container mt-4 border">
     <form
       *ngFor="let form of bookingForms; let i = index"
@@ -26,6 +27,7 @@
           [id]="'passengerName' + i"
           formControlName="passengerName"
           class="form-control"
+          style="border-color: rgb(211, 198, 198);"
         />
         <span
           *ngIf="
@@ -43,6 +45,7 @@
           [id]="'passengerAge' + i"
           formControlName="passengerAge"
           class="form-control"
+          style="border-color: rgb(211, 198, 198);"
         />
         <span
           *ngIf="
@@ -63,6 +66,7 @@
             value="male"
             [disabled]="bookingForms[i].get('passengerGender').disabled"
             formControlName="passengerGender"
+            
           />
           <label class="form-check-label" [for]="'male' + i">Male</label>
         </div>

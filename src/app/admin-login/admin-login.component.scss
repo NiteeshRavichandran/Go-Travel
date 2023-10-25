@@ -38,7 +38,7 @@
     position: absolute;
     bottom: 70px;
     right: 100px;
-    box-shadow: 5px 5px 20px #383838;
+    box-shadow: 5px 5px 20px #0e0505;
     .form-group {
       margin-top: 18px;
     }
@@ -53,13 +53,25 @@
     }
   }
 }
+
 .nav-link a {
   cursor: pointer;
+  color: black;
+}
+
+.nav-link a:hover {
+  font-weight: bold;
 }
 
 .nav-item.active {
-  background-color: #c9d4e0; 
-  color: #fff; 
-  border-radius: 5px; 
+  font-weight: bolder;
+  color: black;
 }
 
+.form-control{
+  border-color: rgb(199, 167, 167);
+}
+
+.help-block {
+  color: red;
+}

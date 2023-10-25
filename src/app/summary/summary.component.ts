@@ -49,7 +49,7 @@ export class SummaryComponent implements OnInit{
         passengerDetails: {
           passengerName: dta.passengerData.passengerName,
           passengerAge: dta.passengerData.passengerAge,
-          passengerGender: this.gender[index],
+          passengerGender: this.gender[index] || dta.passengerData.passengerGender,
         }
       }
       // console.log(this.gender[index]);

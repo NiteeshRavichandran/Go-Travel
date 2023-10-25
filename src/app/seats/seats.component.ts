@@ -100,8 +100,8 @@ export class SeatsComponent {
 
     // console.log(this.lowerSingleSeats);
     // console.log(this.singleUpperBerthSeats);
-    console.log(this.doubleLowerBerthSeats);
-    console.log(this.doubleUpperBerthSeats);
+    // console.log(this.doubleLowerBerthSeats);
+    // console.log(this.doubleUpperBerthSeats);
   }
   // const seatData = ti
   selectedSeats: Seat[] = [];

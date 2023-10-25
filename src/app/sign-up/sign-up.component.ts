@@ -12,6 +12,13 @@ export class SignUpComponent {
   constructor(private router: Router,private authService: AuthService){}
   signUp!: FormGroup;
   errorMessage =''
+  criteria = {
+    lowerCaseMet: false,
+    upperCaseMet: false,
+    digitMet: false,
+    specialCharMet: false,
+    lengthMet: false,
+  };
 
   matchConfirmPassword(control: FormControl): { [s: string]: boolean } {
     if (control.value !== this.signUp.get('password').value) {
@@ -20,6 +27,22 @@ export class SignUpComponent {
     return null;
   }
 
+  checkPasswordCriteria() {
+    const passwordControl = this.signUp.get('password');
+
+    if (passwordControl) {
+      const passwordValue = passwordControl.value;
+
+      this.criteria.lowerCaseMet = /[a-z]/.test(passwordValue);
+      this.criteria.upperCaseMet = /[A-Z]/.test(passwordValue);
+      this.criteria.digitMet = /\d/.test(passwordValue);
+      this.criteria.specialCharMet = /[@#$%^&+=!]/.test(passwordValue);
+      this.criteria.lengthMet = passwordValue.length >= 8;
+    }
+  }
+  
+  
+  
   ngOnInit(){
   this.signUp = new FormGroup({
     username: new FormControl(null,[Validators.email,Validators.required]),
