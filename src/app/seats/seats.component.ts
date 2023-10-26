@@ -1,19 +1,11 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { SeatService } from '../seat.service';
-import { BookingService } from '../booking.service';
+import { SeatService } from '../services/seat.service';
+import { BookingService } from '../services/booking.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { Seat } from '../models/seat.model';
 
-export interface Seat {
-  name: string;
-  seatStatus: 'Available' | 'selected' | 'booked' | 'ladies' | 'ladiesSelected' | 'gents' | 'gentsSelected';
-  passengerName?: string;
-  passengerAge?: number;
-  passengerGender?: string;
-  seatPrice?: number;
-}
 
 @Component({
   selector: 'app-seats',
@@ -150,7 +142,7 @@ export class SeatsComponent {
     seatsArray.forEach((seat, index, array) => {
       if (seat.seatStatus === 'selected') {
         const adjacentSeatIndex = index + 1 <= 6 ? index + 6 : index - 6;
-        if (array[adjacentSeatIndex].seatStatus !== 'booked') {
+        if (array[adjacentSeatIndex].seatStatus !== 'booked' && array[adjacentSeatIndex].seatStatus !== 'selected' ) {
           this.adjSeats.push(array[adjacentSeatIndex]);
         }
       }

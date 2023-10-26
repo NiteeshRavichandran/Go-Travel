@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { BookingService } from '../booking.service';
-import { SeatService } from '../seat.service';
-import { Seat } from '../seats/seats.component';
+import { AuthService } from '../services/auth.service';
+import { BookingService } from '../services/booking.service';
+import { SeatService } from '../services/seat.service';
+import { Seat } from '../models/seat.model';
 
 @Component({
   selector: 'app-book-tickets',

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { SeatService } from '../seat.service';
+import { AuthService } from '../services/auth.service';
+import { SeatService } from '../services/seat.service';
 
 @Component({
   selector: 'app-user',

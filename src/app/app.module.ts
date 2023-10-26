@@ -10,16 +10,17 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SeatsComponent } from './seats/seats.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFireModule } from '@angular/fire/compat'
-import { AuthService } from './auth.service';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddBusComponent } from './add-bus/add-bus.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { UserComponent } from './user/user.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { SummaryComponent } from './summary/summary.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { BusSeatComponent } from './bus-seat/bus-seat.component';
+import { HomeComponent } from './admin/home/home.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego",
@@ -44,7 +45,8 @@ const firebaseConfig = {
     BookTicketsComponent,
     SummaryComponent,
     PageNotFoundComponent,
-    BusSeatComponent
+    BusSeatComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

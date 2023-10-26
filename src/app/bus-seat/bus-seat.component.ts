@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { SeatService } from '../seat.service';
+import { AuthService } from '../services/auth.service';
+import { SeatService } from '../services/seat.service';
 
 @Component({
   selector: 'app-bus-seat',
@@ -125,7 +125,11 @@ export class BusSeatComponent {
     this.allSeats2.forEach((seat, index, array) => {
       if (seat.name === seatname) {
         const adjacentSeatIndex = ((index%12) + 1 <= 6 ? index + 6 : index - 6);
-        if (array[adjacentSeatIndex].seatStatus === 'ladies') {
+        if (
+          (array[adjacentSeatIndex].seatStatus === 'ladies' ||
+           array[adjacentSeatIndex].seatStatus === 'gents') &&
+          array[adjacentSeatIndex].seatStatus !== 'Available'
+        ) {
           const data = {
             seatStatus: 'Available',
             seatPrice: array[adjacentSeatIndex].seatPrice,

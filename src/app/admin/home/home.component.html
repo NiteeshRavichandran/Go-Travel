@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8"></div>
+  
+  <div *ngFor="let bus of buses; let busId = index" class="bus-card">
+    <div class="viewContainer">
+  <h2>{{ bus.busName }}</h2>
+  <p>Bus Number: {{ bus.busNo }}</p>
+  <p>From: {{ bus.fromPlace }}</p>
+  <p>To: {{ bus.toPlace }}</p>
+  <p>Boarding Time: {{ bus.boardingTime }}</p>
+  <p>Reaching Time: {{ bus.reachingTime }}</p>
+  <button class="btn btn-primary" (click)="viewSeats(bus.busId)">View Seats</button>
+</div>
+</div>
+</div>

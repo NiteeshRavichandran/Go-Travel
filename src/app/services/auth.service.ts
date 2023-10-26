@@ -2,18 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http'
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { User } from './user.model';
+import { User } from '../models/user.model';
+import { AuthResponseData } from '../models/auth-response.model';
 
 
-interface AuthResponseData {
-  kind: string;
-  idToken: string;
-  email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  registered?: boolean;
-}
+
 
 @Injectable({
   providedIn: 'root'  
