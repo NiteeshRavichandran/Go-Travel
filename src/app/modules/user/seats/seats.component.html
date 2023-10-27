@@ -1,0 +1,114 @@
+<div class="container">
+  <!-- <h2>Bus Seat Booking</h2> -->
+
+  <div class="ctnr">
+    <!-- Lower Single Seats -->
+    <div class="seats">
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of lowerSingleSeats"
+          class="seat"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+          (click)="toggleSeatStatus(seat)"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+
+      <!-- Double Lower Berth Seats -->
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of doubleLowerBerthSeats; let i = index"
+          class="berth"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+          [class.margin-left]="i < 6"
+          (click)="toggleSeatStatus(seat)"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+    </div>
+
+    <div class="seats">
+      <!-- Single Upper Berth Seats -->
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of singleUpperBerthSeats"
+          class="berth"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+          (click)="toggleSeatStatus(seat)"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+
+      <!-- Double Upper Berth Seats -->
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of doubleUpperBerthSeats; let i = index"
+          class="berth"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+          [class.margin-left]="i < 6"
+          (click)="toggleSeatStatus(seat)"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+    </div>
+
+    <div class="legend">
+      <h3>LEGEND</h3>
+      <ul>
+        <li class="legend-item">
+          <div class="legend-color booked"></div>
+          <span>Booked</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color available"></div>
+          <span>Available</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color ladies"></div>
+          <span>Ladies</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color ladiesSelected"></div>
+          <span>Ladies Selected</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color gents"></div>
+          <span>Gents</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color gentsSelected"></div>
+          <span>Gents Selected</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color selected"></div>
+          <span>Selected</span>
+        </li>
+      </ul>
+      <p>Abbreviations:</p>
+      <ul>
+        <li>LS - Lower Seat</li>
+        <li>DLB - Double Lower Berth</li>
+        <li>DUB - Double Upper Berth</li>
+        <li>SLB - Single Upper Berth</li>
+      </ul>
+    </div>
+  
+
+  </div>
+  <br />
+  <br />
+  <div *ngIf="selectedSeats.length > 0">
+    <h4>Selected Seats</h4>
+    <ul>
+      <li *ngFor="let seat of selectedSeats">{{ seat.name }}</li>
+    </ul>
+    <button class="btn btn-primary" (click)="bookSelectedSeats()">
+      Book Seats
+    </button>
+  </div>
+
+</div>

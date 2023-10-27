@@ -1,0 +1,124 @@
+<div class="container">
+  <!-- <h2>Bus Seat Booking</h2> -->
+
+  <div class="ctnr">
+    <!-- Lower Single Seats -->
+    <div class="seats">
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of lowerSingleSeats"
+          class="seat admin"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+
+      <!-- Double Lower Berth Seats -->
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of doubleLowerBerthSeats; let i = index"
+          class="berth admin"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+          [class.margin-left]="i < 6"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+    </div>
+
+    <div class="seats">
+      <!-- Single Upper Berth Seats -->
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of singleUpperBerthSeats"
+          class="berth admin"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+
+      <!-- Double Upper Berth Seats -->
+      <div class="seat-container">
+        <label
+          *ngFor="let seat of doubleUpperBerthSeats; let i = index"
+          class="berth admin"
+          [ngClass]="getSeatClass(seat.seatStatus)"
+          [class.margin-left]="i < 6"
+        >
+          {{ seat.name }}
+        </label>
+      </div>
+    </div>
+
+    <div class="legend">
+      <h3>LEGEND</h3>
+      <ul>
+        <li class="legend-item">
+          <div class="legend-color booked"></div>
+          <span>Booked</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color available"></div>
+          <span>Available</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color ladies"></div>
+          <span>Ladies</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color gents"></div>
+          <span>Gents</span>
+        </li>
+        <li class="legend-item">
+          <div class="legend-color selected"></div>
+          <span>Selected</span>
+        </li>
+      </ul>
+      <p>Abbreviations:</p>
+      <ul>
+        <li>LS - Lower Seat</li>
+        <li>DLB - Double Lower Berth</li>
+        <li>DUB - Double Upper Berth</li>
+        <li>SLB - Single Upper Berth</li>
+      </ul>
+    </div>
+  
+
+  </div>
+  <br />
+  <br />
+
+  <div>
+    <div class="container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Seat Name</th>
+            <th>Passenger Name</th>
+            <th>Passenger Age</th>
+            <th>Passenger Gender</th>
+            <th>Seat Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let seat of allSeats">
+            <tr *ngIf="seat.seatStatus === 'booked'">
+              <td>{{ seat.name }}</td>
+              <td>{{ seat.passengerDetails?.passengerName || "N/A" }}</td>
+              <td>{{ seat.passengerDetails?.passengerAge || "N/A" }}</td>
+              <td>{{ seat.passengerDetails?.passengerGender || "N/A" }}</td>
+              <td>{{ seat.seatPrice || "N/A" }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="cancelSeat(seat.name, seat.seatPrice)">Cancel Seat</button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

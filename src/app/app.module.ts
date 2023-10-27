@@ -1,26 +1,17 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { SeatsComponent } from './seats/seats.component';
+import { AdminComponent } from './modules/admin/admin.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFireModule } from '@angular/fire/compat'
-import { AuthService } from './services/auth.service';
-import { AuthGuardService } from './services/auth-guard.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AddBusComponent } from './add-bus/add-bus.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { UserComponent } from './user/user.component';
-import { BookTicketsComponent } from './book-tickets/book-tickets.component';
-import { SummaryComponent } from './summary/summary.component';
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './modules/user/user.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { BusSeatComponent } from './bus-seat/bus-seat.component';
-import { HomeComponent } from './admin/home/home.component';
+import { LoginModule } from './modules/login/login.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyADtZEc4w86x68BlWNOnucEwg1HbBO0Ego",
@@ -35,18 +26,9 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     AdminComponent,
-    SignUpComponent,
-    SeatsComponent,
-    AddBusComponent,
-    AdminLoginComponent,
-    UserComponent,
-    BookTicketsComponent,
-    SummaryComponent,
     PageNotFoundComponent,
-    BusSeatComponent,
-    HomeComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +36,8 @@ const firebaseConfig = {
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    LoginModule
   ],
   providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
