@@ -19,6 +19,7 @@ export class SummaryComponent implements OnInit{
   adjSeatStatus:any[] = [];
   totalSeatPrice: number;
   gender: any[] = this.bookingService.getGender();
+  successfulRequests = 0;
   
   
   ngOnInit(){
@@ -60,9 +61,12 @@ export class SummaryComponent implements OnInit{
       this.http.put('https://go-travel-42246-default-rtdb.firebaseio.com/busses/-' + busId +'/seats/' + dta.seatName +'.json', data)
       .subscribe((res) =>{
         // console.log(dta.seatName + res+ 'success'+ busId);
-
-        window.alert('Ticket booked successfully!');
+        this.successfulRequests++;
+        if (this.successfulRequests === this.passengerDataArray.length) {
+          window.alert('Ticket booked successfully!');
           this.router.navigate(['/user/home']);
+        }
+      
       },
       error => {
         // console.log(error);

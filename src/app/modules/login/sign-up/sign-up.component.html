@@ -64,7 +64,7 @@
               'black-text': criteria.lowerCaseMet
             }"
           >
-            (a-z) |
+            (a-z)
           </span>
           <span
             class="help-block"
@@ -73,7 +73,7 @@
               'black-text': criteria.upperCaseMet
             }"
           >
-            (A-Z) |
+            (A-Z)
           </span>
           <span
             class="help-block"
@@ -82,7 +82,7 @@
               'black-text': criteria.digitMet
             }"
           >
-            (0-9) |
+            (0-9)
           </span>
           <span
             class="help-block"
@@ -91,7 +91,7 @@
               'black-text': criteria.specialCharMet
             }"
           >
-            (@#$%^&+=!) |
+            (@#$%^&+=!)
           </span>
           <span
             class="help-block"
@@ -102,21 +102,8 @@
           >
             8 chars
           </span>
-          <span
-             *ngIf="signUp.get('password')?.hasError('required') &&
-                     signUp.get('password')?.touched"
-             class="help-block">Please enter a Valid Password.
-          </span>
-          <span
-          *ngIf="
-            signUp.get('password')?.hasError('pattern') &&
-            signUp.get('password')?.touched
-          "
-          class="help-block"
-          >Password does not meet the criteria.</span
-        >
-
         </div>
+        
                
 
         <!-- confirm password -->

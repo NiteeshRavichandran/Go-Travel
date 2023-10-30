@@ -18,9 +18,9 @@ export class SeatService {
 
   }
 
-  setBusData(data: string){
-     this.busId = data;
-  }
+  // setBusData(data: string){
+  //    this.busId = data;
+  // }
 
   getBusData(){
     return this.busId;

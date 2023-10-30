@@ -5,7 +5,7 @@ import { AddBusComponent } from './add-bus/add-bus.component';
 import { BusSeatComponent } from './bus-seat/bus-seat.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 @NgModule({
@@ -22,7 +22,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AdminRoutingModule
+    // RouterModule.forChild([{ path: '', component: AdminComponent }]),
   ]
 })
 export class AdminModule { }

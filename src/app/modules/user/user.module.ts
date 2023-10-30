@@ -6,6 +6,7 @@ import { SeatsComponent } from './seats/seats.component';
 import { SummaryComponent } from './summary/summary.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserRoutingModule } from './user-routing.module';
 
 
 
@@ -25,7 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UserRoutingModule,
+    // RouterModule.forChild([{ path: '', component: UserModule }]),
+
   ]
 })
 export class UserModule { }

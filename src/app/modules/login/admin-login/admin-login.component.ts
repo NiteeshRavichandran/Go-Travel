@@ -27,7 +27,7 @@ onSubmit() {
     const password = this.adminLogin.value.password;
 
     this.authService.signIn(email, password).subscribe(resData => {
-      console.log(resData); 
+      // console.log(resData); 
       this.authService.setAdmin();
       this.router.navigate(['/admin/home']);
     },

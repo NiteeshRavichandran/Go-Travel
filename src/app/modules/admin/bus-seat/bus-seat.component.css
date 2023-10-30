@@ -16,10 +16,10 @@
 .seat-container {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column; /* Stack items vertically */
-  justify-content: center; /* Center items vertically */
-  align-items: center; /* Center items horizontally */
-  /* Set a height for the container if needed */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  
 }
 
 /* Add styles for individual seats */

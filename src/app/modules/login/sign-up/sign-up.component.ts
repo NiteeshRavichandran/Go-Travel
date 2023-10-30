@@ -65,7 +65,7 @@ onSubmit() {
 
       this.authService.signUp(email, password).subscribe(resData => {
         // console.log(resData); 
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       },
       error => {
         this.errorMessage = error;

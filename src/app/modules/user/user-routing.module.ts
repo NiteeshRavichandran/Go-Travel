@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent as UserHome } from './home/home.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
 import { SummaryComponent } from './summary/summary.component';
 import { SeatsComponent } from './seats/seats.component';
@@ -13,7 +13,7 @@ const userRoutes: Routes = [
     component: UserComponent,
     canActivate:[AuthGuardService],
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: 'home', component: UserHome },
       { path: 'book', component: BookTicketsComponent },
       { path: 'seats', component: SeatsComponent },
       { path: 'summary', component: SummaryComponent },

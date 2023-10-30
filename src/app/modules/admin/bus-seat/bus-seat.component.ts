@@ -15,6 +15,7 @@ export class BusSeatComponent {
     private http: HttpClient,
     private cd: ChangeDetectorRef
   ) {
+    // console.log('bs');
     setTimeout(() => {
     this.allSeats = this.allSeats.concat(
       this.singleUpperBerthSeats,
@@ -90,7 +91,6 @@ export class BusSeatComponent {
     // console.log(this.doubleLowerBerthSeats);
     // console.log(this.doubleUpperBerthSeats);
   }
-  // const seatData = ti
 
   logout(){
     this.authService.logout();
