@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'adminLogin', component: AdminLoginComponent },
@@ -24,7 +25,6 @@ const routes: Routes = [
     data: { roles: ['user'] },
   },
   { path: '**', component: PageNotFoundComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 
